@@ -73,6 +73,11 @@ public class FrmCadastrarAmigo extends javax.swing.JFrame {
         });
 
         JB_Cancelar.setText("Cancelar");
+        JB_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,6 +173,10 @@ public class FrmCadastrarAmigo extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_JB_CadastrarActionPerformed
+
+    private void JB_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelarActionPerformed
+this.dispose();
+    }//GEN-LAST:event_JB_CancelarActionPerformed
 
     /**
      * @param args the command line arguments
