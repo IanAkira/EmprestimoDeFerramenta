@@ -7,18 +7,18 @@ public class Amigo {
 
     private String nome;
     private int Id;
-    private String email;
+    
     private int telefone;
 
     //Construtores
     public Amigo() {
-        this("", 0, "", 0);
+        this("", 0, 0);
     }
 
-    public Amigo(String nome, int Id, String email, int telefone) {
+    public Amigo(String nome, int Id, int telefone) {
         this.nome = nome;
         this.Id = Id;
-        this.email = email;
+        
         this.telefone = telefone;
     }
 
@@ -39,13 +39,11 @@ public class Amigo {
         this.Id = Id;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    
+    
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    
+    
 
     public int getTelefone() {
         return telefone;
@@ -60,9 +58,9 @@ public class Amigo {
     }
 
     //Cadastrar nova ferramenta
-    public boolean insertAmigoBD(String Nome, int Id, String email, int telefone) {
+    public boolean insertAmigoBD(String Nome, int Id, int telefone) {
         int id = this.maiorID() + 1;
-        Amigo objeto = new Amigo(Nome, Id, email, telefone);
+        Amigo objeto = new Amigo(Nome, Id, telefone);
         AmigoDAO.ListaAmigo.add(objeto);
         return true;
     }
@@ -75,8 +73,8 @@ public class Amigo {
     }
 
     //Editar ferramenta
-    public boolean updateAmigoBD(int Id, String Nome, String email, int telefone) {
-        Amigo objeto = new Amigo(nome, Id, email, telefone);
+    public boolean updateAmigoBD(int Id, String Nome, int telefone) {
+        Amigo objeto = new Amigo(nome, Id,  telefone);
         int indice = this.procuraIndice(Id);
         AmigoDAO.ListaAmigo.set(indice, objeto);
         return true;

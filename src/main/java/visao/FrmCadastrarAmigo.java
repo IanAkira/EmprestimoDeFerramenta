@@ -4,17 +4,25 @@
  */
 package visao;
 
+import javax.swing.JOptionPane;
+import model.Amigo;
+
+
 /**
  *
  * @author 1072417383
  */
 public class FrmCadastrarAmigo extends javax.swing.JFrame {
+    private Amigo objetoamigo;
+    private int id;
 
     /**
      * Creates new form FrmCadastrarAmigo
      */
     public FrmCadastrarAmigo() {
+        
         initComponents();
+        this.objetoamigo = new Amigo();
     }
 
     /**
@@ -26,21 +34,140 @@ public class FrmCadastrarAmigo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        CA_Nome = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        CA_Telefone = new javax.swing.JTextField();
+        JB_Cadastrar = new javax.swing.JButton();
+        JB_Cancelar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setText("Cadastrar Amigo");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setText("Nome:");
+
+        CA_Nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CA_NomeActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("Telefone:");
+
+        CA_Telefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CA_TelefoneActionPerformed(evt);
+            }
+        });
+
+        JB_Cadastrar.setText("Cadastrar");
+        JB_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_CadastrarActionPerformed(evt);
+            }
+        });
+
+        JB_Cancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(JB_Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addComponent(JB_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addComponent(jLabel2)
+                            .addComponent(CA_Nome)
+                            .addComponent(jLabel3)
+                            .addComponent(CA_Telefone))))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel1)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CA_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CA_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JB_Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JB_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CA_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CA_NomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CA_NomeActionPerformed
+
+    private void CA_TelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CA_TelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CA_TelefoneActionPerformed
+
+    private void JB_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CadastrarActionPerformed
+        try {
+            // recebendo e validando dados da interface gráfica.
+            String nome = "";
+            int telefone = 0;
+
+            if (this.CA_Nome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.CA_Nome.getText();
+            }
+
+            if (this.CA_Telefone.getText().length() < 9 && this.CA_Telefone.getText().length() < 10 ) {
+                throw new Mensagem("O telefone precisa ter 9 dígitos.");
+            } else {
+                telefone = Integer.parseInt(this.CA_Telefone.getText());
+            }
+
+            // envia os dados para o Controlador cadastrar
+            if (this.objetoamigo.insertAmigoBD(nome, id, telefone)) {
+                JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
+                // limpa campos da interface
+                this.CA_Nome.setText("");
+                this.CA_Telefone.setText("");
+            }
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        }
+    }
+
+    public class Mensagem extends Exception {
+
+        public Mensagem(String mensagem) {
+            super(mensagem);
+        }
+
+    }//GEN-LAST:event_JB_CadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +205,12 @@ public class FrmCadastrarAmigo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CA_Nome;
+    private javax.swing.JTextField CA_Telefone;
+    private javax.swing.JButton JB_Cadastrar;
+    private javax.swing.JButton JB_Cancelar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
