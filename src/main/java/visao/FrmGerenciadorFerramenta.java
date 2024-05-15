@@ -2,7 +2,7 @@ package visao;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import model.Ferramenta;
+import modelo.Ferramenta;
 
 /**
  *

@@ -5,7 +5,7 @@
 package visao;
 
 import javax.swing.JOptionPane;
-import model.Amigo;
+import modelo.Amigo;
 
 
 /**

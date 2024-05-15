@@ -1,7 +1,7 @@
 package visao;
 
 import javax.swing.JOptionPane;
-import model.Ferramenta;
+import modelo.Ferramenta;
 
 /**
  *
