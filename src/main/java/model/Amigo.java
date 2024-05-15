@@ -74,7 +74,7 @@ public class Amigo {
 
     //Editar ferramenta
     public boolean updateAmigoBD(int Id, String Nome, int telefone) {
-        Amigo objeto = new Amigo(nome, Id,  telefone);
+        Amigo objeto = new Amigo(Nome, Id,  telefone);
         int indice = this.procuraIndice(Id);
         AmigoDAO.ListaAmigo.set(indice, objeto);
         return true;
