@@ -11,7 +11,7 @@ public class FrmGerenciadorAmigo extends javax.swing.JFrame {
 
     public FrmGerenciadorAmigo() {
         initComponents();
-        this.objetoamigo = new Amigo();
+        this.objetoamigo = new Amigo(); //Carrega objetoamigo de Amigo
         this.carregaTabela();
 
     }
@@ -126,10 +126,10 @@ public class FrmGerenciadorAmigo extends javax.swing.JFrame {
                                 .addComponent(JBEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(JTFNome)
                                     .addComponent(jLabel1)
-                                    .addComponent(JTFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JTFTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                                     .addComponent(jLabel4))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -143,7 +143,7 @@ public class FrmGerenciadorAmigo extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,11 +163,11 @@ public class FrmGerenciadorAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JTFTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTelefoneActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_JTFTelefoneActionPerformed
 
     private void JTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_JTFNomeActionPerformed
 
     private void JTableAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableAmigosMouseClicked
@@ -230,13 +230,11 @@ public class FrmGerenciadorAmigo extends javax.swing.JFrame {
             String nome = "";
             int telefone = 0;
 
-         
             if (this.JTFNome.getText().length() < 1) {
                 throw new Mensagem("Nome deve conter ao menos 1 caracteres.");
             } else {
                 nome = this.JTFNome.getText();
             }
-
 
             if (this.JTFTelefone.getText().length() < 9 && this.JTFTelefone.getText().length() < 10) {
                 throw new Mensagem("O Telefone deve ter 9 digitos.");
@@ -275,9 +273,7 @@ public class FrmGerenciadorAmigo extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 a.getId(),
                 a.getNome(),
-                a.getTelefone(),
-                
-            });
+                a.getTelefone(),});
         }
     }
 

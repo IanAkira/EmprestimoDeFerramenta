@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class Ferramenta {
     
+    //Atributos Ferramenta
     private int Id;
     private String Nome;
     private String Marca;
     private int Valor;
     
     //Construtores
-    
     public Ferramenta(){
         this (0, "", "", 0);
     }
@@ -24,7 +24,6 @@ public class Ferramenta {
     }
     
     //Getters and Setters
-    
      public int getId() {
         return Id;
     }
@@ -58,7 +57,6 @@ public class Ferramenta {
     }   
     
      //Chama a lista de ferramentas
-     
     public ArrayList<Ferramenta> getListaFerramenta() {
         return FerramentaDAO.getListaFerramenta();
     }

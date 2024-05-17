@@ -31,17 +31,17 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
-                      <Component id="JB_Cancelar" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="JBCancelar" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                      <Component id="JB_Cadastrar" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="JBCadastrar" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="CA_Nome" pref="320" max="32767" attributes="0"/>
+                          <Component id="JTFNome" pref="320" max="32767" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="CA_Telefone" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JTFTelefone" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -57,15 +57,15 @@
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="CA_Nome" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="JTFNome" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="CA_Telefone" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="JTFTelefone" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JB_Cancelar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="JB_Cadastrar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="JBCancelar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="JBCadastrar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="104" max="32767" attributes="0"/>
           </Group>
@@ -89,9 +89,9 @@
         <Property name="text" type="java.lang.String" value="Nome:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CA_Nome">
+    <Component class="javax.swing.JTextField" name="JTFNome">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CA_NomeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFNomeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -102,25 +102,25 @@
         <Property name="text" type="java.lang.String" value="Telefone:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CA_Telefone">
+    <Component class="javax.swing.JTextField" name="JTFTelefone">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CA_TelefoneActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFTelefoneActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="JB_Cadastrar">
+    <Component class="javax.swing.JButton" name="JBCadastrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_CadastrarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBCadastrarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="JB_Cancelar">
+    <Component class="javax.swing.JButton" name="JBCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_CancelarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBCancelarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

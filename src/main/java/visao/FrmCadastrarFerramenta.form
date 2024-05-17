@@ -40,10 +40,10 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" pref="70" max="-2" attributes="0"/>
-                              <Component id="CF_Nome" min="-2" pref="286" max="-2" attributes="0"/>
-                              <Component id="CF_Marca" min="-2" pref="286" max="-2" attributes="0"/>
+                              <Component id="JTFNome" min="-2" pref="286" max="-2" attributes="0"/>
+                              <Component id="JTFMarca" min="-2" pref="286" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="CF_Custo" min="-2" pref="286" max="-2" attributes="0"/>
+                              <Component id="JTFCusto" min="-2" pref="286" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -61,15 +61,15 @@
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" pref="28" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="CF_Nome" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="JTFNome" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="CF_Marca" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="JTFMarca" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="CF_Custo" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="JTFCusto" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JBCancelar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -97,7 +97,7 @@
         <Property name="text" type="java.lang.String" value="Nome:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CF_Nome">
+    <Component class="javax.swing.JTextField" name="JTFNome">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -107,7 +107,7 @@
         <Property name="text" type="java.lang.String" value="Marca:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CF_Marca">
+    <Component class="javax.swing.JTextField" name="JTFMarca">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -117,7 +117,7 @@
         <Property name="text" type="java.lang.String" value="Custo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CF_Custo">
+    <Component class="javax.swing.JTextField" name="JTFCusto">
     </Component>
     <Component class="javax.swing.JButton" name="JBCadastrar">
       <Properties>
