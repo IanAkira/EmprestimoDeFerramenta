@@ -11,6 +11,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jCadastrarFerramenta = new javax.swing.JMenu();
@@ -22,9 +26,18 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuGerenciarAmigos = new javax.swing.JMenuItem();
         jMenuGerenciarFerramentas = new javax.swing.JMenuItem();
-        jMenuSobre = new javax.swing.JMenu();
+        jMenuRelatório = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +79,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Relatório");
+        jMenu3.setText("Gerenciador");
 
         jMenuGerenciarAmigos.setText("Gerenciar Amigos");
         jMenuGerenciarAmigos.addActionListener(new java.awt.event.ActionListener() {
@@ -86,8 +99,22 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenuSobre.setText("Sobre");
-        jMenuBar1.add(jMenuSobre);
+        jMenuRelatório.setText("Relatório");
+        jMenuRelatório.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRelatórioActionPerformed(evt);
+            }
+        });
+
+        jMenuItem4.setText("Relatório de ferramentas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenuRelatório.add(jMenuItem4);
+
+        jMenuBar1.add(jMenuRelatório);
 
         setJMenuBar(jMenuBar1);
 
@@ -140,6 +167,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         menu.setVisible (true);
     }//GEN-LAST:event_jMenuEmprestimoActionPerformed
 
+    private void jMenuRelatórioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRelatórioActionPerformed
+        
+    }//GEN-LAST:event_jMenuRelatórioActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        FrmRelatorioEmprestimo menu = new FrmRelatorioEmprestimo();
+        menu.setVisible (true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -175,6 +211,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jCadastrarFerramenta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
@@ -184,7 +221,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuEmprestimo;
     private javax.swing.JMenuItem jMenuGerenciarAmigos;
     private javax.swing.JMenuItem jMenuGerenciarFerramentas;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenu jMenuSobre;
+    private javax.swing.JMenu jMenuRelatório;
     // End of variables declaration//GEN-END:variables
 }
