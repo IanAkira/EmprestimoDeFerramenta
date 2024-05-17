@@ -12,4 +12,11 @@
         <exec.mainClass>com.mycompany.emprestimo.Emprestimo</exec.mainClass>
     </properties>
     <name>EmprestimoFerramentasss</name>
+    <dependencies>
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
+        </dependency>
+    </dependencies>
 </project>

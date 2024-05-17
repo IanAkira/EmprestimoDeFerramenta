@@ -21,10 +21,10 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
         JTFNomeAmigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         JTFIdFerramenta = new javax.swing.JTextField();
-        JTFDataEmprestimo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         JBCancelar = new javax.swing.JButton();
         JBConfirmar = new javax.swing.JButton();
+        JTFDataEmprestimo = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +60,8 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
             }
         });
 
+        JTFDataEmprestimo.setDateFormatString("dd-MM-yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,18 +70,19 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
                 .addContainerGap(251, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(JBConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(JTFIdFerramenta, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JTFNomeAmigo, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JTFDataEmprestimo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(JTFDataEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addComponent(JBConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JTFIdFerramenta)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(JTFNomeAmigo))
                         .addGap(239, 239, 239))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -99,14 +102,14 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JTFIdFerramenta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTFDataEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(JTFDataEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(98, 98, 98)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JBConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,15 +141,12 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
             } else {
                 id = Integer.parseInt(this.JTFIdFerramenta.getText());
             }
-            String dataTexto = this.JTFDataEmprestimo.getText(); 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            sdf.setLenient(false);
+            Date dataSelecionada = this.JTFDataEmprestimo.getDate();
 
-            try {
-                data = sdf.parse(dataTexto);
-            } catch (ParseException e) {
-                throw new Mensagem("Data inválida. Use o formato dd/MM/yyyy.");
-            }
+            // Formatando a data como uma string no formato desejado
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String dataTexto = sdf.format(dataSelecionada);
+            
             JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
 
         } catch (Mensagem erro) {
@@ -191,7 +191,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCancelar;
     private javax.swing.JButton JBConfirmar;
-    private javax.swing.JTextField JTFDataEmprestimo;
+    private com.toedter.calendar.JDateChooser JTFDataEmprestimo;
     private javax.swing.JTextField JTFIdFerramenta;
     private javax.swing.JTextField JTFNomeAmigo;
     private javax.swing.JLabel jLabel1;
