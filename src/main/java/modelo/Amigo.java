@@ -39,12 +39,6 @@ public class Amigo {
         this.Id = Id;
     }
 
-    
-    
-
-    
-    
-
     public int getTelefone() {
         return telefone;
     }
@@ -59,7 +53,7 @@ public class Amigo {
 
     //Cadastrar nova ferramenta
     public boolean insertAmigoBD(String Nome, int Id, int telefone) {
-        int id = this.maiorID() + 1;
+        Id = this.maiorID() + 1;
         Amigo objeto = new Amigo(Nome, Id, telefone);
         AmigoDAO.ListaAmigo.add(objeto);
         return true;

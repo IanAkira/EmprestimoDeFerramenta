@@ -66,7 +66,7 @@ public class Ferramenta {
      //Cadastrar nova ferramenta
     
     public boolean insertFerramentaBD(String Nome, String Marca, int Valor) {
-        int id = this.maiorID() + 1;
+        Id = this.maiorID() + 1;
         Ferramenta objeto = new Ferramenta(Id, Nome, Marca, Valor);
         FerramentaDAO.ListaFerramenta.add(objeto);
         return true;
