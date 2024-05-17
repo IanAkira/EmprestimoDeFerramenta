@@ -17,12 +17,12 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuCadastroAmigo = new javax.swing.JMenuItem();
         jMenuCadastroFerramenta = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuEmprestimo = new javax.swing.JMenuItem();
+        jMenuDevolucao = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuGerenciarAmigos = new javax.swing.JMenuItem();
         jMenuGerenciarFerramentas = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jMenuSobre = new javax.swing.JMenu();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -53,11 +53,16 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Movimento");
 
-        jMenuItem3.setText("Empréstimo");
-        jMenu2.add(jMenuItem3);
+        jMenuEmprestimo.setText("Empréstimo");
+        jMenuEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuEmprestimoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuEmprestimo);
 
-        jMenuItem2.setText("Devolução");
-        jMenu2.add(jMenuItem2);
+        jMenuDevolucao.setText("Devolução");
+        jMenu2.add(jMenuDevolucao);
 
         jMenuBar1.add(jMenu2);
 
@@ -81,8 +86,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Sobre");
-        jMenuBar1.add(jMenu4);
+        jMenuSobre.setText("Sobre");
+        jMenuBar1.add(jMenuSobre);
 
         setJMenuBar(jMenuBar1);
 
@@ -130,6 +135,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         ferramenta.setVisible(true);
     }//GEN-LAST:event_jMenuGerenciarFerramentasActionPerformed
 
+    private void jMenuEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmprestimoActionPerformed
+        FrmRealizarEmprestimo menu = new FrmRealizarEmprestimo();
+        menu.setVisible (true);
+    }//GEN-LAST:event_jMenuEmprestimoActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -167,14 +177,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCadastroAmigo;
     private javax.swing.JMenuItem jMenuCadastroFerramenta;
+    private javax.swing.JMenuItem jMenuDevolucao;
+    private javax.swing.JMenuItem jMenuEmprestimo;
     private javax.swing.JMenuItem jMenuGerenciarAmigos;
     private javax.swing.JMenuItem jMenuGerenciarFerramentas;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu jMenuSobre;
     // End of variables declaration//GEN-END:variables
 }
