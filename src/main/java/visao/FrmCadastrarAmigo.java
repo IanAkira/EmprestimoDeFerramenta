@@ -145,10 +145,10 @@ public class FrmCadastrarAmigo extends javax.swing.JFrame {
                 nome = this.CA_Nome.getText();
             }
 
-            if (this.CA_Telefone.getText().length() < 9 && this.CA_Telefone.getText().length() < 10 ) {
-                throw new Mensagem("O telefone precisa ter 9 dígitos.");
-            } else {
+            if (this.CA_Telefone.getText().length() == 9) {
                 telefone = Integer.parseInt(this.CA_Telefone.getText());
+            } else {
+                throw new Mensagem("Informe um número válido.");
             }
 
             // envia os dados para o Controlador cadastrar
