@@ -1,5 +1,11 @@
 package visao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import modelo.Ferramenta;
+
 public class FrmRealizarEmprestimo extends javax.swing.JFrame {
 
     public FrmRealizarEmprestimo() {
@@ -48,6 +54,11 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
         });
 
         JBConfirmar.setText("Confirmar");
+        JBConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBConfirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,6 +120,41 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
+    private void JBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBConfirmarActionPerformed
+        try {
+            //Recebendo e validando dados da interface gráfica.
+            String nome = "";
+            int id = 0;
+            Date data = null;
+
+            if (this.JTFNomeAmigo.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFNomeAmigo.getText();
+            }
+
+            if (this.JTFIdFerramenta.getText().length() <= 0) {
+                throw new Mensagem("Digite um valor válido!");
+            } else {
+                id = Integer.parseInt(this.JTFIdFerramenta.getText());
+            }
+            String dataTexto = this.JTFDataEmprestimo.getText(); 
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            sdf.setLenient(false);
+
+            try {
+                data = sdf.parse(dataTexto);
+            } catch (ParseException e) {
+                throw new Mensagem("Data inválida. Use o formato dd/MM/yyyy.");
+            }
+            JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
+
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        }
+    }//GEN-LAST:event_JBConfirmarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
