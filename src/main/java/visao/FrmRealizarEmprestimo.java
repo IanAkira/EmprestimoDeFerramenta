@@ -1,5 +1,6 @@
 package visao;
 
+import static dao.AmigoDAO.ListaAmigo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -124,6 +125,23 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBConfirmarActionPerformed
+        
+        String ProcurarNome = JTFNomeAmigo.getText();  //Cria uma variável com o nome excrito na JTF
+        boolean encontrado = false;       //Variável para armazenar se o nome foi encontrado
+
+        for (int i = 0; i < ListaAmigo.size(); i++) {
+            if (ListaAmigo.get(i).getNome().equals(ProcurarNome)) {
+                encontrado = true;
+                break;  //Quebra o loop quando encontra o nome
+            }
+        }
+
+        if (encontrado) {
+            JOptionPane.showMessageDialog(null,"Este amigo está na lista");
+        } else {
+            JOptionPane.showMessageDialog(null,"Este amigo não está na lista");
+        }
+  
         try {
             //Recebendo e validando dados da interface gráfica.
             String nome = "";
@@ -147,7 +165,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String dataTexto = sdf.format(dataSelecionada);
             
-            JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
+          //  JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
 
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
