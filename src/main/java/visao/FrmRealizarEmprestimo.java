@@ -1,6 +1,7 @@
 package visao;
 
 import static dao.AmigoDAO.ListaAmigo;
+import static dao.FerramentaDAO.ListaFerramenta;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -125,7 +126,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBConfirmarActionPerformed
-        
+
         String ProcurarNome = JTFNomeAmigo.getText();  //Cria uma variável com o nome excrito na JTF
         boolean encontrado = false;       //Variável para armazenar se o nome foi encontrado
 
@@ -137,11 +138,26 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
         }
 
         if (encontrado) {
-            JOptionPane.showMessageDialog(null,"Este amigo está na lista");
+            JOptionPane.showMessageDialog(null, "Este amigo está na lista");
         } else {
-            JOptionPane.showMessageDialog(null,"Este amigo não está na lista");
+            JOptionPane.showMessageDialog(null, "Este amigo não está na lista");
         }
-  
+
+        String ProcurarIdFerramenta = JTFIdFerramenta.getText();  
+        boolean encontradaF = false;
+        for (Ferramenta ferramenta : ListaFerramenta) {
+            if (ferramenta.getId() == Integer.parseInt(ProcurarIdFerramenta)) {
+                encontradaF = true;
+                break;
+            }
+        }
+
+        if (encontradaF) {
+            JOptionPane.showMessageDialog(null, "Esta ferramenta está na lista");
+        } else {
+            JOptionPane.showMessageDialog(null, "Esta ferramenta não está na lista");
+        }
+
         try {
             //Recebendo e validando dados da interface gráfica.
             String nome = "";
@@ -164,9 +180,8 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
             // Formatando a data como uma string no formato desejado
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String dataTexto = sdf.format(dataSelecionada);
-            
-          //  JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
 
+            //  JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
