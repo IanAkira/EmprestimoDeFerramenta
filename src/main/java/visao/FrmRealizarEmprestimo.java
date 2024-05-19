@@ -137,12 +137,6 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
             }
         }
 
-        if (encontrado) {
-            JOptionPane.showMessageDialog(null, "Este amigo está na lista");
-        } else {
-            JOptionPane.showMessageDialog(null, "Este amigo não está na lista");
-        }
-
         String ProcurarIdFerramenta = JTFIdFerramenta.getText();  
         boolean encontradaF = false;
         for (Ferramenta ferramenta : ListaFerramenta) {
@@ -152,11 +146,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
             }
         }
 
-        if (encontradaF) {
-            JOptionPane.showMessageDialog(null, "Esta ferramenta está na lista");
-        } else {
-            JOptionPane.showMessageDialog(null, "Esta ferramenta não está na lista");
-        }
+        if (encontradaF && encontrado) {
 
         try {
             //Recebendo e validando dados da interface gráfica.
@@ -181,11 +171,17 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String dataTexto = sdf.format(dataSelecionada);
 
-            //  JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
+            JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
+            
+            
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        }}
+        
+        else {
+            JOptionPane.showMessageDialog(null, "Esta Ferramenta ou este Amigo não está na lista");
         }
     }//GEN-LAST:event_JBConfirmarActionPerformed
 
