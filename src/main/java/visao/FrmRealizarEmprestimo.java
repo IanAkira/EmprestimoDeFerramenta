@@ -6,12 +6,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Emprestimo;
 import modelo.Ferramenta;
 
 public class FrmRealizarEmprestimo extends javax.swing.JFrame {
 
+    private Emprestimo objetoemprestimo;
+
     public FrmRealizarEmprestimo() {
         initComponents();
+        this.objetoemprestimo = new Emprestimo(); //Carrega objetoemprestimo de Emprestimos
     }
 
     @SuppressWarnings("unchecked")
@@ -137,7 +141,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
             }
         }
 
-        String ProcurarIdFerramenta = JTFIdFerramenta.getText();  
+        String ProcurarIdFerramenta = JTFIdFerramenta.getText();
         boolean encontradaF = false;
         for (Ferramenta ferramenta : ListaFerramenta) {
             if (ferramenta.getId() == Integer.parseInt(ProcurarIdFerramenta)) {
@@ -148,39 +152,41 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
 
         if (encontradaF && encontrado) {
 
-        try {
-            //Recebendo e validando dados da interface gráfica.
-            String nome = "";
-            int id = 0;
-            Date data = null;
+            try {
+                //Recebendo e validando dados da interface gráfica.
+                String nome = "";
+                int id = 0;
+                Date data = null;
 
-            if (this.JTFNomeAmigo.getText().length() < 2) {
-                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-            } else {
-                nome = this.JTFNomeAmigo.getText();
+                if (this.JTFNomeAmigo.getText().length() < 2) {
+                    throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+                } else {
+                    nome = this.JTFNomeAmigo.getText();
+                }
+
+                if (this.JTFIdFerramenta.getText().length() <= 0) {
+                    throw new Mensagem("Digite um valor válido!");
+                } else {
+                    id = Integer.parseInt(this.JTFIdFerramenta.getText());
+                }
+                Date dataSelecionada = this.JTFDataEmprestimo.getDate();
+
+                // Formatando a data como uma string no formato desejado
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String dataTexto = sdf.format(dataSelecionada);
+
+                if (this.objetoemprestimo.insertEmprestimoBD(nome, id, dataTexto)) {
+                    JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
+                    this.JTFNomeAmigo.setText("");
+                    this.JTFIdFerramenta.setText("");
+                }
+
+            } catch (Mensagem erro) {
+                JOptionPane.showMessageDialog(null, erro.getMessage());
+            } catch (NumberFormatException erro2) {
+                JOptionPane.showMessageDialog(null, "Informe um número válido.");
             }
-
-            if (this.JTFIdFerramenta.getText().length() <= 0) {
-                throw new Mensagem("Digite um valor válido!");
-            } else {
-                id = Integer.parseInt(this.JTFIdFerramenta.getText());
-            }
-            Date dataSelecionada = this.JTFDataEmprestimo.getDate();
-
-            // Formatando a data como uma string no formato desejado
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            String dataTexto = sdf.format(dataSelecionada);
-
-            JOptionPane.showMessageDialog(null,"Empréstimo realizado com sucesso!");
-            
-            
-        } catch (Mensagem erro) {
-            JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número válido.");
-        }}
-        
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Esta Ferramenta ou Amigo não está cadastrado!");
         }
     }//GEN-LAST:event_JBConfirmarActionPerformed

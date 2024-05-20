@@ -1,5 +1,8 @@
 package modelo;
 
+import dao.EmprestimoDAO;
+import java.util.ArrayList;
+
 public class Emprestimo {
 
     //Atributos do Emprestimo
@@ -42,4 +45,16 @@ public class Emprestimo {
     public void setData(String Data) {
         this.Data = Data;
     }
+    
+      public ArrayList<Emprestimo> getListaEmprestimo() {
+        return EmprestimoDAO.getListaEmprestimo();
+    }
+      
+         public boolean insertEmprestimoBD(String nomeAmigo, int idFerramenta, String data) {
+        Emprestimo objeto = new Emprestimo(nomeAmigo, idFerramenta, data);
+        EmprestimoDAO.ListaEmprestimos.add(objeto);
+        return true;
+    } 
+      
+      
 }

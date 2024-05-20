@@ -1,9 +1,18 @@
 package visao;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Emprestimo;
+
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
+
+    private Emprestimo objetoemprestimo;
 
     public FrmRelatorioEmprestimo() {
         initComponents();
+        this.objetoemprestimo = new Emprestimo(); //Carrega objetoFerramenta de Ferramenta
+        this.carregaTabela();
     }
 
     @SuppressWarnings("unchecked")
@@ -93,7 +102,20 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
- 
+
+    public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JTableEmprestimoAtivo.getModel();
+        modelo.setNumRows(0);
+        ArrayList<Emprestimo> minhaLista = objetoemprestimo.getListaEmprestimo();
+        for (Emprestimo a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getNomeAmigo(),
+                a.getIdFerramenta(),
+                a.getData()
+            });
+        }
+    }
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

@@ -13,7 +13,7 @@ public class EmprestimoDAO {
         return ListaEmprestimos;
     }
 
-    public static void setListaEmprestimo(ArrayList<Emprestimo> ListaAmigo) {
+    public static void setListaEmprestimo(ArrayList<Emprestimo> ListaEmprestimo) {
         EmprestimoDAO.ListaEmprestimos = ListaEmprestimos;
         
     }
