@@ -181,7 +181,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
         }}
         
         else {
-            JOptionPane.showMessageDialog(null, "Esta Ferramenta ou este Amigo não está na lista");
+            JOptionPane.showMessageDialog(null, "Esta Ferramenta ou Amigo não está cadastrado!");
         }
     }//GEN-LAST:event_JBConfirmarActionPerformed
 
