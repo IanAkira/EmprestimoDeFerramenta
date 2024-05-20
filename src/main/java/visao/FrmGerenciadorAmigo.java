@@ -36,6 +36,7 @@ public class FrmGerenciadorAmigo extends javax.swing.JFrame {
         jLabel2.setText("Gerenciador De Ferramentas");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerenciador de Amigos");
 
         JTableAmigos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

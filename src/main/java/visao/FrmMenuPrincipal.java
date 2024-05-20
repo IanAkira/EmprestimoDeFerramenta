@@ -58,6 +58,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Principal");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 80)); // NOI18N
         jLabel1.setText("Bem Vindo");
