@@ -14,7 +14,16 @@ public class EmprestimoDAO {
     }
 
     public static void setListaEmprestimo(ArrayList<Emprestimo> ListaEmprestimo) {
-        EmprestimoDAO.ListaEmprestimos = ListaEmprestimos;
-        
+        EmprestimoDAO.ListaEmprestimos = ListaEmprestimo;
+    }
+
+    public static int maiorID() {
+        int maiorID = 0;
+        for (int i = 0; i < ListaEmprestimos.size(); i++) {
+            if (ListaEmprestimos.get(i).getId() > maiorID) {
+                maiorID = ListaEmprestimos.get(i).getId();
+            }
+        }
+        return maiorID;
     }
 }
