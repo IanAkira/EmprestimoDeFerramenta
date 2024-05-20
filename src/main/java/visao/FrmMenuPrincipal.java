@@ -136,6 +136,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuRelatório.add(jMenuRelatorio);
 
         jMenuHistorico.setText("Histórico de Empréstimos");
+        jMenuHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuHistoricoActionPerformed(evt);
+            }
+        });
         jMenuRelatório.add(jMenuHistorico);
 
         jMenuBar1.add(jMenuRelatório);
@@ -229,6 +234,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                    "Com esses recursos, você terá controle total sobre quem pegou emprestado suas ferramentas e quando!\n\n"+
                           "Obrigado por escolher nosso software!");
     }//GEN-LAST:event_jMenuSobreMouseClicked
+
+    private void jMenuHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuHistoricoActionPerformed
+ FrmHistoricoDeEmprestimos menu = new FrmHistoricoDeEmprestimos();
+        menu.setVisible (true);
+    }//GEN-LAST:event_jMenuHistoricoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
