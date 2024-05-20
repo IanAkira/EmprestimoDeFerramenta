@@ -1,5 +1,7 @@
 package visao;
 
+import javax.swing.JOptionPane;
+
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     public FrmMenuPrincipal() {
@@ -139,6 +141,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuRelatório);
 
         jMenuSobre.setText("Sobre");
+        jMenuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuSobreMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuSobre);
 
         setJMenuBar(jMenuBar1);
@@ -200,6 +207,28 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         FrmRelatorioEmprestimo menu = new FrmRelatorioEmprestimo();
         menu.setVisible (true);
     }//GEN-LAST:event_jMenuRelatorioActionPerformed
+
+    private void jMenuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSobreMouseClicked
+        JOptionPane.showMessageDialog(null,"Bem-vindo ao Software de Empréstimo de Ferramentas!\n\n" +
+                          "Este projeto foi desenvolvido por alunos da Unisul,\n" +
+                          "como parte do Trabalho A3 da disciplina de Programação de Soluções Computacionais.\n\n" +
+                          "A equipe é composta pelos alunos Kevin Nunes, Ian Akira, Henrique Bento," +
+                          " Victor Rodrigues e Gabriel Cordeiro, \nque se dedicaram a criar uma solução prática e eficiente " +
+                          "para gerenciar o empréstimo de ferramentas.\n\n" +
+                          "Explore as funcionalidades do nosso software:\n\n" +
+                   "1. Cadastre seus amigos com seus nomes e números de telefone.\n" +
+                   "2. Registre suas ferramentas, incluindo nome, marca e custo.\n" +
+                   "3. Gerencie facilmente os empréstimos realizados.\n" +
+                   "4. Consulte os dados de amigos e ferramentas salvos.\n" +
+                   "5. Altere informações de amigos e ferramentas conforme necessário.\n" +
+                   "6. Exclua registros de amigos e ferramentas quando apropriado.\n" +
+                   "7. Registre empréstimos de ferramentas para amigos cadastrados.\n" +
+                   "8. Marque a devolução das ferramentas emprestadas.\n" +
+                   "9. Acesse relatórios detalhados sobre os empréstimos realizados.\n" +
+                   "10. Consulte o histórico completo de empréstimos realizados.\n\n" +
+                   "Com esses recursos, você terá controle total sobre quem pegou emprestado suas ferramentas e quando!\n\n"+
+                          "Obrigado por escolher nosso software!");
+    }//GEN-LAST:event_jMenuSobreMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

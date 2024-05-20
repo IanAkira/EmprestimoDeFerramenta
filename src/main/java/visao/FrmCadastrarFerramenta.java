@@ -28,7 +28,6 @@ public class FrmCadastrarFerramenta extends javax.swing.JFrame {
         JBCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cadastro De Ferramentas");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Cadastro De Ferramentas");
