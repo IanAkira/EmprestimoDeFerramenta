@@ -33,6 +33,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
         JTFDataEmprestimo = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Empréstimos");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Empréstimo");

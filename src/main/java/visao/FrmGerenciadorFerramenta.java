@@ -44,6 +44,7 @@ public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
         jLabelTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerenciador de Ferramentas");
 
         JTableFerramenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
