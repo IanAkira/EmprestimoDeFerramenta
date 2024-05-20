@@ -23,3 +23,24 @@
 
 8. **Relatórios:**
    - *RF008* O sistema permitirá ao usuário acessar um relatório contendo informações sobre as ferramentas emprestadas, incluindo para quem foram emprestadas e a data do empréstimo.
+  
+## Requisitos não Funcionais (Software de Empréstimo de Ferramentas)
+
+**Acesso**
+- *RNF001* O Sistema deve estar disponível para acesso do adiministrador sempre que necessário.
+  
+**Desempenho**
+- *RNF002* O Sistema deve ser otimizado para gerar respostas rapidas,minimizando o tempo de carregamento do software.
+
+**Confiabilidade**
+- *RNF003* O Sistemadeve deve ser capaz de lidar com falhas no software e no hardware de forma resiliente de forma que sempre garanta a disponibilidade do programa.
+
+**Dados**
+- *RNF004* O Sistema deve ser capaz de armazenar todos os dados cadastrados pelo adiministrador.
+
+**Segurança**
+- *RNF005* O Sistema deve pedir uma senha para que o programa seja acessível.E deve ser capaz de indentificar e validar a senha caso esteja correta.
+
+**Conexão com a Internet**
+- *RNF006* O Sistema deve ser capaz de fazer conexão com a internet.
+
