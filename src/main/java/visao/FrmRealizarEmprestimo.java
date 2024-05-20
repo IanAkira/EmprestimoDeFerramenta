@@ -154,21 +154,21 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
         if (encontradaF && encontrado) {
 
             try {
-                //Recebendo e validando dados da interface gráfica.
+                // Recebendo e validando dados da interface gráfica.
                 String nome = "";
-                int id = 0;
+                int idFerramenta = 0;
                 Date data = null;
 
                 if (this.JTFNomeAmigo.getText().length() < 2) {
-                    throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+                    throw new Exception("Nome deve conter ao menos 2 caracteres.");
                 } else {
                     nome = this.JTFNomeAmigo.getText();
                 }
 
                 if (this.JTFIdFerramenta.getText().length() <= 0) {
-                    throw new Mensagem("Digite um valor válido!");
+                    throw new Exception("Digite um valor válido!");
                 } else {
-                    id = Integer.parseInt(this.JTFIdFerramenta.getText());
+                    idFerramenta = Integer.parseInt(this.JTFIdFerramenta.getText());
                 }
                 Date dataSelecionada = this.JTFDataEmprestimo.getDate();
 
@@ -176,16 +176,16 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String dataTexto = sdf.format(dataSelecionada);
 
-                if (this.objetoemprestimo.insertEmprestimoBD(nome, id, dataTexto)) {
+                if (this.objetoemprestimo.insertEmprestimoBD(nome, idFerramenta, dataTexto)) {
                     JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
                     this.JTFNomeAmigo.setText("");
                     this.JTFIdFerramenta.setText("");
+                    this.JTFDataEmprestimo.setDate(null);
                 }
 
-            } catch (Mensagem erro) {
+            } catch (Exception erro) {
                 JOptionPane.showMessageDialog(null, erro.getMessage());
-            } catch (NumberFormatException erro2) {
-                JOptionPane.showMessageDialog(null, "Informe um número válido.");
+           
             }
         } else {
             JOptionPane.showMessageDialog(null, "Esta Ferramenta ou Amigo não está cadastrado!");

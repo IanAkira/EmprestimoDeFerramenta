@@ -26,6 +26,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTableEmprestimoAtivo = new javax.swing.JTable();
         JBCancelar = new javax.swing.JButton();
+        JBDevolucao = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -42,21 +43,32 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
         JTableEmprestimoAtivo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Amigo", "Ferramenta", "Data"
+                "Id", "Amigo", "Ferramenta", "Data"
             }
         ));
         jScrollPane1.setViewportView(JTableEmprestimoAtivo);
+        if (JTableEmprestimoAtivo.getColumnModel().getColumnCount() > 0) {
+            JTableEmprestimoAtivo.getColumnModel().getColumn(0).setMinWidth(50);
+            JTableEmprestimoAtivo.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
 
         JBCancelar.setText("Retornar");
         JBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCancelarActionPerformed(evt);
+            }
+        });
+
+        JBDevolucao.setText("Devolução");
+        JBDevolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBDevolucaoActionPerformed(evt);
             }
         });
 
@@ -73,7 +85,9 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JBDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(67, 67, 67))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(194, 194, 194)
@@ -89,11 +103,13 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52)
+                        .addComponent(JBDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 82, Short.MAX_VALUE))
         );
 
@@ -104,12 +120,45 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
+    private void JBDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBDevolucaoActionPerformed
+        try {
+
+            
+            int id = 0;
+            
+
+            if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
+                throw new Mensagem("Selecione uma ferramenta para apagar primeiro");
+            } else {
+                id = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(this.JTableEmprestimoAtivo.getSelectedRow(), 0).toString());
+            }
+
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Ferramenta?");
+
+            if (respostaUsuario == 0) {
+
+                if (this.objetoemprestimo.deleteEmprestimoBD(id)) {
+               JOptionPane.showMessageDialog(null,"Devolução feita com sucesso");
+                    
+                }
+            }
+
+            System.out.println(this.objetoemprestimo.getListaEmprestimo().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBDevolucaoActionPerformed
+
     public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableEmprestimoAtivo.getModel();
         modelo.setNumRows(0);
         ArrayList<Emprestimo> minhaLista = objetoemprestimo.getListaEmprestimo();
         for (Emprestimo a : minhaLista) {
             modelo.addRow(new Object[]{
+                a.getId(),
                 a.getNomeAmigo(),
                 a.getIdFerramenta(),
                 a.getData()
@@ -149,6 +198,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCancelar;
+    private javax.swing.JButton JBDevolucao;
     private javax.swing.JTable JTableEmprestimoAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
