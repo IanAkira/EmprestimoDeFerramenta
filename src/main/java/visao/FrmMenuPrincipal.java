@@ -124,7 +124,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuRelatorio.setText("Relatório de Ferramentas");
+        jMenuRelatorio.setText("Relatório de Empréstimos");
         jMenuRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuRelatorioActionPerformed(evt);

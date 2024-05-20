@@ -138,7 +138,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuRelatorio">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Ferramentas"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Empr&#xe9;stimos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRelatorioActionPerformed"/>
