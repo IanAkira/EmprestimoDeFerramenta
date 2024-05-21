@@ -3,15 +3,18 @@ package visao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Devolução;
 import modelo.Emprestimo;
 
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
     private Emprestimo objetoemprestimo;
+    private Devolução objetodevolução;
 
     public FrmRelatorioEmprestimo() {
         initComponents();
-        this.objetoemprestimo = new Emprestimo(); //Carrega objetoFerramenta de Ferramenta
+        this.objetoemprestimo = new Emprestimo(); //Carrega objetoemprestimo de Emprestimo
+        this.objetodevolução = new Devolução(); //Carrega objetodevolução de Devolução
         this.carregaTabela();
     }
 
@@ -123,24 +126,47 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
     private void JBDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBDevolucaoActionPerformed
         try {
 
-            
             int id = 0;
-            
 
             if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
-                throw new Mensagem("Selecione uma ferramenta para apagar primeiro");
+                throw new Mensagem("Selecione um empréstimos primeiro.");
             } else {
                 id = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(this.JTableEmprestimoAtivo.getSelectedRow(), 0).toString());
             }
 
-            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Ferramenta?");
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja encerrar este empréstimo.");
 
             if (respostaUsuario == 0) {
 
-                if (this.objetoemprestimo.deleteEmprestimoBD(id)) {
-               JOptionPane.showMessageDialog(null,"Devolução feita com sucesso");
-                    
+                if (this.objetoemprestimo.deleteEmprestimoBD(id)) 
+
+
+                try {
+                    String nomeAmigo = "";
+                    String dataTexto = "";
+                    int idFerramenta = 0;
+
+                    if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
+                        throw new Mensagem("Selecione uma linha da tabela.");
+                    }
+
+                    int linhaSelecionada = this.JTableEmprestimoAtivo.getSelectedRow();
+                    nomeAmigo = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 1).toString();
+                    dataTexto = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 3).toString();
+                    idFerramenta = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 2).toString());
+
+                    if (this.objetodevolução.insertDevoluçãoBD( nomeAmigo, idFerramenta, dataTexto)) {
+                        JOptionPane.showMessageDialog(null, "Devolução registrada com sucesso.");
+                    }
+
+                    System.out.println(this.objetodevolução.getListaDevolução().toString());
+
+                } catch (Mensagem erro) {
+                    JOptionPane.showMessageDialog(null, erro.getMessage());
+                } catch (NumberFormatException erro2) {
+                    JOptionPane.showMessageDialog(null, "Informe um número válido.");
                 }
+
             }
 
             System.out.println(this.objetoemprestimo.getListaEmprestimo().toString());
