@@ -29,7 +29,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuCadastroFerramenta = new javax.swing.JMenuItem();
         jMenuMovimento = new javax.swing.JMenu();
         jMenuEmprestimo = new javax.swing.JMenuItem();
-        jMenuDevolucao = new javax.swing.JMenuItem();
         jMenuGerenciador = new javax.swing.JMenu();
         jMenuGerenciarAmigos = new javax.swing.JMenuItem();
         jMenuGerenciarFerramentas = new javax.swing.JMenuItem();
@@ -94,9 +93,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuMovimento.add(jMenuEmprestimo);
-
-        jMenuDevolucao.setText("Devolução");
-        jMenuMovimento.add(jMenuDevolucao);
 
         jMenuBar1.add(jMenuMovimento);
 
@@ -280,7 +276,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCadastrar;
     private javax.swing.JMenuItem jMenuCadastroAmigo;
     private javax.swing.JMenuItem jMenuCadastroFerramenta;
-    private javax.swing.JMenuItem jMenuDevolucao;
     private javax.swing.JMenuItem jMenuEmprestimo;
     private javax.swing.JMenu jMenuGerenciador;
     private javax.swing.JMenuItem jMenuGerenciarAmigos;

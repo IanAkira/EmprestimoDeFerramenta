@@ -177,7 +177,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
             carregaTabela();
         }
     }//GEN-LAST:event_JBDevolucaoActionPerformed
-
+        
     public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableEmprestimoAtivo.getModel();
         modelo.setNumRows(0);
