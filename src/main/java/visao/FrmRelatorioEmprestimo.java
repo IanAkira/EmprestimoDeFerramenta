@@ -156,7 +156,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                     idFerramenta = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 2).toString());
 
                     if (this.objetodevolução.insertDevoluçãoBD( nomeAmigo, idFerramenta, dataTexto)) {
-                        JOptionPane.showMessageDialog(null, "Devolução registrada com sucesso.");
+                        JOptionPane.showMessageDialog(null, "Empréstimo encerrado com sucesso.");
                     }
 
                     System.out.println(this.objetodevolução.getListaDevolução().toString());
