@@ -1,5 +1,6 @@
 package visao;
 
+import dao.FerramentaDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -7,14 +8,15 @@ import modelo.Ferramenta;
 
 public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
 
-    private Ferramenta objetoFerramenta;
+    private FerramentaDAO ferramentaDAO;
 
     public FrmGerenciadorFerramenta() {
         initComponents();
-        this.objetoFerramenta = new Ferramenta(); //Carrega objetoFerramenta de Ferramenta
+        this.ferramentaDAO = new FerramentaDAO();
         this.carregaTabela();
         this.calculaValorTotal();
     }
+
     public void calculaValorTotal() {
         double total = 0;
         for (int i = 0; i < JTableFerramenta.getRowCount(); i++) {
@@ -22,7 +24,6 @@ public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
         }
         jLabelTotal.setText("R$ " + String.format("%.2f", total));
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -211,36 +212,43 @@ public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
 
     private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
         try {
-
             int id = 0;
             String nome = "";
             String marca = "";
             int valor = 0;
 
+            // Verifica se alguma ferramenta foi selecionada na tabela
             if (this.JTableFerramenta.getSelectedRow() == -1) {
                 throw new Mensagem("Selecione uma ferramenta para apagar primeiro");
             } else {
+                // Obtém o ID da ferramenta selecionada na tabela
                 id = Integer.parseInt(this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 0).toString());
             }
 
-            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Ferramenta?");
+            // Pede confirmação ao usuário antes de apagar a ferramenta
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esta Ferramenta?");
 
             if (respostaUsuario == 0) {
-
-                if (this.objetoFerramenta.deleteFerramentaBD(id)) {
-
+                // Se o usuário confirmar a exclusão
+                // Chama o método deleteFerramentaBD na classe FerramentaDAO
+                FerramentaDAO ferramentaDAO = new FerramentaDAO();
+                if (ferramentaDAO.deleteFerramentaBD(id)) {
+                    // Limpa os campos de texto da interface
                     this.JTFNome.setText("");
                     this.JTFMarca.setText("");
                     this.JTFValor.setText("");
+                    // Exibe uma mensagem de sucesso
                     JOptionPane.showMessageDialog(rootPane, "Ferramenta Apagada com Sucesso.");
                 }
             }
 
-            System.out.println(this.objetoFerramenta.getListaFerramenta().toString());
+            // Exibe a lista de ferramentas após a operação de exclusão
+            FerramentaDAO ferramentaDAO = new FerramentaDAO();
+            System.out.println(ferramentaDAO.getListaFerramenta().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
-
+            // Chama o método carregaTabela para atualizar a tabela de ferramentas
             carregaTabela();
         }
     }//GEN-LAST:event_JBApagarActionPerformed
@@ -263,50 +271,59 @@ public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
 
     private void JBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEditarActionPerformed
         try {
-
             int id = 0;
             String nome = "";
             String marca = "";
             int valor = 0;
 
+            // Verifica se foi inserido um nome válido
             if (this.JTFNome.getText().length() < 1) {
-                throw new Mensagem("Nome deve conter ao menos 1 caracteres.");
+                throw new Mensagem("Nome deve conter ao menos 1 caractere.");
             } else {
                 nome = this.JTFNome.getText();
             }
 
+            // Verifica se foi inserida uma marca válida
             if (this.JTFMarca.getText().length() < 1) {
-                throw new Mensagem("A marca deve conter ao menos 1 caracteres.");
+                throw new Mensagem("A marca deve conter ao menos 1 caractere.");
             } else {
-                marca = (this.JTFMarca.getText());
+                marca = this.JTFMarca.getText();
             }
+
+            // Verifica se foi inserido um valor válido
             if (this.JTFValor.getText().length() < 1) {
                 throw new Mensagem("O valor deve conter ao menos 1 número.");
             } else {
                 valor = Integer.parseInt(this.JTFValor.getText());
             }
 
+            // Verifica se uma ferramenta foi selecionada na tabela
             if (this.JTableFerramenta.getSelectedRow() == -1) {
                 throw new Mensagem("Escolha uma Ferramenta para Editar Primeiro");
             } else {
+                // Obtém o ID da ferramenta selecionada na tabela
                 id = Integer.parseInt(this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 0).toString());
             }
 
-            if (this.objetoFerramenta.updateFerramentaBD(id, nome, marca, valor)) {
-
+            // Atualiza a ferramenta no banco de dados
+            FerramentaDAO ferramentaDAO = new FerramentaDAO();
+            if (ferramentaDAO.updateFerramentaBD(id, nome, marca, valor)) {
+                // Limpa os campos de texto da interface
                 this.JTFNome.setText("");
                 this.JTFMarca.setText("");
                 this.JTFValor.setText("");
-
-                JOptionPane.showMessageDialog(null, "Ferramenta Editado com sucesso.");
-
+                // Exibe uma mensagem de sucesso
+                JOptionPane.showMessageDialog(null, "Ferramenta Editada com sucesso.");
             }
-            System.out.println(this.objetoFerramenta.getListaFerramenta().toString());
+
+            // Exibe a lista de ferramentas após a operação de edição
+            System.out.println(ferramentaDAO.getListaFerramenta().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
         } finally {
+            // Chama o método carregaTabela para atualizar a tabela de ferramentas
             carregaTabela();
         }
     }//GEN-LAST:event_JBEditarActionPerformed
@@ -316,17 +333,19 @@ public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelTotalAncestorAdded
 
     public void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JTableFerramenta.getModel();
-        modelo.setNumRows(0);
-        ArrayList<Ferramenta> minhaLista = objetoFerramenta.getListaFerramenta();
-        for (Ferramenta a : minhaLista) {
-            modelo.addRow(new Object[]{
-                a.getId(),
-                a.getNome(),
-                a.getMarca(),
-                a.getValor(),});
-        }
+    DefaultTableModel modelo = (DefaultTableModel) this.JTableFerramenta.getModel();
+    modelo.setNumRows(0);
+    FerramentaDAO ferramentaDAO = new FerramentaDAO(); // Criar uma instância de FerramentaDAO
+    ArrayList<Ferramenta> minhaLista = ferramentaDAO.getListaFerramenta(); // Obter lista de ferramentas do DAO
+    for (Ferramenta a : minhaLista) {
+        modelo.addRow(new Object[]{
+            a.getId(),
+            a.getNome(),
+            a.getMarca(),
+            a.getValor(),
+        });
     }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBApagar;

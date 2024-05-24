@@ -1,15 +1,17 @@
 package visao;
 
+import dao.FerramentaDAO;
 import javax.swing.JOptionPane;
 import modelo.Ferramenta;
 
+
 public class FrmCadastrarFerramenta extends javax.swing.JFrame {
 
-    private Ferramenta objetoFerramenta;
+    private FerramentaDAO ferramentaDAO;
 
     public FrmCadastrarFerramenta() {
         initComponents();
-        this.objetoFerramenta = new Ferramenta();
+        this.ferramentaDAO = new FerramentaDAO();
     }
 
 
@@ -23,7 +25,7 @@ public class FrmCadastrarFerramenta extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         JTFMarca = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        JTFCusto = new javax.swing.JTextField();
+        JTFValor = new javax.swing.JTextField();
         JBCadastrar = new javax.swing.JButton();
         JBCancelar = new javax.swing.JButton();
 
@@ -76,7 +78,7 @@ public class FrmCadastrarFerramenta extends javax.swing.JFrame {
                                 .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(JTFMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4)
-                                .addComponent(JTFCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JTFValor, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(177, Short.MAX_VALUE))
         );
@@ -96,7 +98,7 @@ public class FrmCadastrarFerramenta extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTFCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JTFValor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,40 +111,48 @@ public class FrmCadastrarFerramenta extends javax.swing.JFrame {
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
         try {
-            //Recebendo e validando dados da interface gráfica.
-            String nome = "";
-            String marca = "";
-            int custo = 0;
+        // Recebendo e validando dados da interface gráfica.
+        String nome = "";
+        String marca = "";
+        int valor = 0;
+        int id = 0;
 
-            if (this.JTFNome.getText().length() < 2) {
-                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-            } else {
-                nome = this.JTFNome.getText();
-            }
-
-            marca = this.JTFMarca.getText();
-
-            if (this.JTFCusto.getText().length() <= 0) {
-                throw new Mensagem("Digite um valor válido!");
-            } else {
-                custo = Integer.parseInt(this.JTFCusto.getText());
-            }
-
-            if (this.objetoFerramenta.insertFerramentaBD(nome, marca, custo)) {
-                JOptionPane.showMessageDialog(null, "Ferramenta Cadastrada com Sucesso!");
-                //Limpa campos da interface
-                this.JTFNome.setText("");
-                this.JTFMarca.setText("");
-                this.JTFCusto.setText("");
-            }
-
-            System.out.println(this.objetoFerramenta.getListaFerramenta().toString());
-
-        } catch (Mensagem erro) {
-            JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        if (this.JTFNome.getText().length() < 2) {
+            throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+        } else {
+            nome = this.JTFNome.getText();
         }
+
+        marca = this.JTFMarca.getText();
+
+        if (this.JTFValor.getText().length() <= 0) {
+            throw new Mensagem("Digite um valor válido!");
+        } else {
+            valor = Integer.parseInt(this.JTFValor.getText());
+        }
+
+        // Cria uma instância do FerramentaDAO
+        FerramentaDAO ferramentaDAO = new FerramentaDAO();
+
+        // Chama o método insertFerramentaBD na classe FerramentaDAO
+        if (ferramentaDAO.insertFerramentaBD(new Ferramenta(id, nome, marca, valor))) {
+            JOptionPane.showMessageDialog(null, "Ferramenta Cadastrada com Sucesso!");
+            // Limpa campos da interface
+            this.JTFNome.setText("");
+            this.JTFMarca.setText("");
+            this.JTFValor.setText("");
+            
+        }
+
+        // Exibe a lista de ferramentas após a operação de inserção
+        System.out.println(ferramentaDAO.getListaFerramenta().toString());
+
+    } catch (Mensagem erro) {
+        JOptionPane.showMessageDialog(null, erro.getMessage());
+    } catch (NumberFormatException erro2) {
+        JOptionPane.showMessageDialog(null, "Informe um número válido.");
+    }
+
     }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
@@ -186,9 +196,9 @@ public class FrmCadastrarFerramenta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBCancelar;
-    private javax.swing.JTextField JTFCusto;
     private javax.swing.JTextField JTFMarca;
     private javax.swing.JTextField JTFNome;
+    private javax.swing.JTextField JTFValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
