@@ -1,5 +1,6 @@
 package visao;
 
+import dao.AmigoDAO;
 import modelo.Amigo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -248,7 +249,7 @@ public class FrmGerenciadorAmigo extends javax.swing.JFrame {
                 id = Integer.parseInt(this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 0).toString());
             }
 
-            if (this.objetoamigo.updateAmigoBD(id, nome, telefone)) {
+            if (this.objetoamigo.updateAmigoBD(nome, id, telefone)) {
                 this.JTFNome.setText("");
                 this.JTFTelefone.setText("");
 

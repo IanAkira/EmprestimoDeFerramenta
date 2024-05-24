@@ -9,7 +9,7 @@ public class Amigo {
     private String nome;
     private int id;
     private int telefone;
-    
+
     private AmigoDAO dao;
 
     //Construtores
@@ -68,13 +68,11 @@ public class Amigo {
         return true;
     }
 
-    //Editar amigo
-    public boolean updateAmigoBD(int id, String Nome, int telefone) {
-        Amigo objeto = new Amigo(Nome, id, telefone);
+    public boolean updateAmigoBD(String nome, int id, int telefone) {
+        Amigo objeto = new Amigo(nome, id, telefone);
         dao.updateAmigoBD(objeto);
         return true;
     }
-
 
     //Carrega dados de uma amigo especÍfica pelo seu ID
     public Amigo carregaAmigo(int id) {
@@ -83,7 +81,7 @@ public class Amigo {
 
     //Retorna o maior ID da base de dados
     public int maiorID() {
-        return dao.maiorID(); 
+        return dao.maiorID();
 
     }
 }

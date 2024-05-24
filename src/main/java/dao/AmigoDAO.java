@@ -114,21 +114,16 @@ public class AmigoDAO {
         return true;
     }
 
-     public boolean updateAmigoBD(Amigo objeto) {
-
-        String sql = "UPDATE tb_amigos set nome = ? ,idade = ? ,curso = ? ,fase = ? WHERE id = ?";
-
+ public boolean updateAmigoBD(Amigo objeto) {
+        String sql = "UPDATE tb_amigos SET nome = ?, telefone = ? WHERE id = ?";
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
-
             stmt.setString(1, objeto.getNome());
-            stmt.setInt(3, objeto.getTelefone());
-
-            stmt.execute();
+            stmt.setInt(2, objeto.getTelefone());
+            stmt.setInt(3, objeto.getid());
+            stmt.executeUpdate();
             stmt.close();
-
             return true;
-
         } catch (SQLException erro) {
             System.out.println("Erro:" + erro);
             throw new RuntimeException(erro);
