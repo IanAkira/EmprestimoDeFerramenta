@@ -7,18 +7,21 @@ public class Amigo {
 
     //Atributos de Amigo
     private String nome;
-    private int Id;
+    private int id;
     private int telefone;
+    
+    private AmigoDAO dao;
 
     //Construtores
     public Amigo() {
         this("", 0, 0);
     }
 
-    public Amigo(String nome, int Id, int telefone) {
+    public Amigo(String nome, int id, int telefone) {
         this.nome = nome;
-        this.Id = Id;
+        this.id = id;
         this.telefone = telefone;
+        this.dao = new AmigoDAO();
     }
 
     //Getters e Setters
@@ -30,12 +33,12 @@ public class Amigo {
         this.nome = nome;
     }
 
-    public int getId() {
-        return Id;
+    public int getid() {
+        return id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setid(int id) {
+        this.id = id;
     }
 
     public int getTelefone() {
@@ -48,52 +51,39 @@ public class Amigo {
 
     //Chama a lista de amigos
     public ArrayList<Amigo> getListaAmigo() {
-        return AmigoDAO.getListaAmigo();
+        return dao.getListaAmigo();
     }
 
     //Cadastrar novo amigo
-    public boolean insertAmigoBD(String Nome, int Id, int telefone) {
-        Id = this.maiorID() + 1;
-        Amigo objeto = new Amigo(Nome, Id, telefone);
-        AmigoDAO.ListaAmigo.add(objeto);
+    public boolean insertAmigoBD(String Nome, int id, int telefone) {
+        id = this.maiorID() + 1;
+        Amigo objeto = new Amigo(Nome, id, telefone);
+        dao.insertAmigoBD(objeto);
         return true;
     }
 
     //Deletar um amigo
     public boolean deleteAmigoBD(int id) {
-        int indice = this.procuraIndice(id);
-        AmigoDAO.ListaAmigo.remove(indice);
+        dao.deleteAmigoBD(id);
         return true;
     }
 
     //Editar amigo
-    public boolean updateAmigoBD(int Id, String Nome, int telefone) {
-        Amigo objeto = new Amigo(Nome, Id, telefone);
-        int indice = this.procuraIndice(Id);
-        AmigoDAO.ListaAmigo.set(indice, objeto);
+    public boolean updateAmigoBD(int id, String Nome, int telefone) {
+        Amigo objeto = new Amigo(Nome, id, telefone);
+        dao.updateAmigoBD(objeto);
         return true;
     }
 
-    //Procura o ÍNDICE de objeto da ListaAmigo que contem o ID enviado
-    private int procuraIndice(int id) {
-        int indice = -1;
-        for (int i = 0; i < AmigoDAO.ListaAmigo.size(); i++) {
-            if (AmigoDAO.ListaAmigo.get(i).getId() == id) {
-                indice = i;
-            }
-        }
-        return indice;
-    }
 
     //Carrega dados de uma amigo especÍfica pelo seu ID
     public Amigo carregaAmigo(int id) {
-        int indice = this.procuraIndice(id);
-        return AmigoDAO.ListaAmigo.get(indice);
+        return dao.carregaAmigo(id);
     }
 
     //Retorna o maior ID da base de dados
     public int maiorID() {
-        return AmigoDAO.maiorID();
+        return dao.maiorID(); 
 
     }
 }
