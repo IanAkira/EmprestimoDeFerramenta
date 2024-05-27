@@ -10,20 +10,22 @@ public class Devolução {
     private int idFerramenta;
     private String data;
     private int id;
-
+    private String NomeDaFerrmentaD;
     //Construtores
     public Devolução() {
         this.nomeAmigo = "";
         this.idFerramenta = 0;
         this.data = "";
         this.id = 0;
+        this.NomeDaFerrmentaD = "";
     }
 
-    public Devolução(String nomeAmigo, int idFerramenta, String data, int id) {
+    public Devolução(String nomeAmigo, int idFerramenta, String data, int id,String NomeDaFerrmentaD) {
         this.nomeAmigo = nomeAmigo;
         this.idFerramenta = idFerramenta;
         this.data = data;
         this.id = id;
+        this.NomeDaFerrmentaD = NomeDaFerrmentaD;
     }
 
     //Getters e Setters
@@ -58,14 +60,21 @@ public class Devolução {
     public void setData(String data) {
         this.data = data;
     }
+        public String getNomeDaFerrmentaD() {
+        return NomeDaFerrmentaD;
+    }
+
+    public void setNomeDaFerrmentaD(String NomeDaFerrmentaD) {
+        this.NomeDaFerrmentaD = NomeDaFerrmentaD;
+    }
 
     public ArrayList<Devolução> getListaDevolução() {
         return DevoluçãoDAO.getListaDevolução();
     }
 
-    public boolean insertDevoluçãoBD(String nomeAmigo, int idFerramenta, String data) {
+    public boolean insertDevoluçãoBD(String nomeAmigo, int idFerramenta, String data,String NomeDaFerrmentaD) {
         int id = this.maiorID() + 1;
-        Devolução objeto = new Devolução(nomeAmigo, idFerramenta, data, id);
+        Devolução objeto = new Devolução(nomeAmigo, idFerramenta, data, id,NomeDaFerrmentaD);
         DevoluçãoDAO.ListaDevolução.add(objeto);
         return true;
     }

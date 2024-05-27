@@ -1,5 +1,6 @@
 package visao;
 
+import static dao.FerramentaDAO.ListaFerramenta;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -145,7 +146,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                     String nomeAmigo = "";
                     String dataTexto = "";
                     int idFerramenta = 0;
-
+                    String NomeDaFerramenta = "";
                     if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
                         throw new Mensagem("Selecione uma linha da tabela.");
                     }
@@ -154,8 +155,10 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                     nomeAmigo = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 1).toString();
                     dataTexto = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 3).toString();
                     idFerramenta = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 0).toString());
-
-                    if (this.objetodevolução.insertDevoluçãoBD( nomeAmigo, idFerramenta, dataTexto)) {
+                    NomeDaFerramenta = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 2).toString();
+                    if (this.objetodevolução.insertDevoluçãoBD( nomeAmigo, idFerramenta, dataTexto,NomeDaFerramenta)) {
+                        int NovoIdFerramenta = idFerramenta - 1;
+                        NomeDaFerramenta = ListaFerramenta.get(NovoIdFerramenta).getNome();
                         JOptionPane.showMessageDialog(null, "Empréstimo encerrado com sucesso.");
                     }
 

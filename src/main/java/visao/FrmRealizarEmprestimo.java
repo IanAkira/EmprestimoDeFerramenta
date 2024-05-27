@@ -159,6 +159,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
                 int idFerramenta = 0;
                 Date data = null;
                 String NomeDaFerramenta = "";
+                String NomeDaFerramentaD = "";
 
                 if (this.JTFNomeAmigo.getText().length() < 2) {
                     throw new Exception("Nome deve conter ao menos 2 caracteres.");
@@ -180,7 +181,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
                 // Buscando o nome da Ferramenta pelo id
                 int NovoIdFerramenta = idFerramenta - 1;
                 NomeDaFerramenta = ListaFerramenta.get(NovoIdFerramenta).getNome();
-                
+                NomeDaFerramentaD = NomeDaFerramenta;
                 
                 
 

@@ -111,7 +111,7 @@ public class FrmHistoricoDeEmprestimos extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 a.getId(),
                 a.getNomeAmigo(),
-                a.getIdFerramenta(),
+                a.getNomeDaFerrmentaD(),
                 a.getData()
             });
         }
