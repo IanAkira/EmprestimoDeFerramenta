@@ -10,6 +10,7 @@ public class Emprestimo {
     private int idFerramenta;
     private String data;
     private int id;
+    private String NomeDaFerramenta;
 
     //Construtores
     public Emprestimo() {
@@ -17,13 +18,15 @@ public class Emprestimo {
         this.idFerramenta = 0;
         this.data = "";
         this.id = 0;
+        this.NomeDaFerramenta = "";
     }
 
-    public Emprestimo(String nomeAmigo, int idFerramenta, String data, int id) {
+    public Emprestimo(String nomeAmigo, int idFerramenta, String data, int id, String NomeDaFerramenta) {
         this.nomeAmigo = nomeAmigo;
         this.idFerramenta = idFerramenta;
         this.data = data;
         this.id = id;
+        this.NomeDaFerramenta = NomeDaFerramenta;
     }
 
     //Getters e Setters
@@ -58,14 +61,22 @@ public class Emprestimo {
     public void setData(String data) {
         this.data = data;
     }
+    
+        public String getNomeDaFerramenta() {
+        return NomeDaFerramenta;
+    }
+
+    public void setNomeDaFerramenta(String NomeDaFerramenta) {
+        this.NomeDaFerramenta = NomeDaFerramenta;
+    }
 
     public ArrayList<Emprestimo> getListaEmprestimo() {
         return EmprestimoDAO.getListaEmprestimo();
     }
 
-    public boolean insertEmprestimoBD(String nomeAmigo, int idFerramenta, String data) {
+    public boolean insertEmprestimoBD(String nomeAmigo, int idFerramenta, String data, String NomeDaFerramenta) {
         int id = this.maiorID() + 1;
-        Emprestimo objeto = new Emprestimo(nomeAmigo, idFerramenta, data, id);
+        Emprestimo objeto = new Emprestimo(nomeAmigo, idFerramenta, data, id, NomeDaFerramenta);
         EmprestimoDAO.ListaEmprestimos.add(objeto);
         return true;
     }

@@ -158,6 +158,7 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
                 String nome = "";
                 int idFerramenta = 0;
                 Date data = null;
+                String NomeDaFerramenta = "";
 
                 if (this.JTFNomeAmigo.getText().length() < 2) {
                     throw new Exception("Nome deve conter ao menos 2 caracteres.");
@@ -175,8 +176,15 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
                 // Formatando a data como uma string no formato desejado
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String dataTexto = sdf.format(dataSelecionada);
+                
+                // Buscando o nome da Ferramenta pelo id
+                int NovoIdFerramenta = idFerramenta - 1;
+                NomeDaFerramenta = ListaFerramenta.get(NovoIdFerramenta).getNome();
+                
+                
+                
 
-                if (this.objetoemprestimo.insertEmprestimoBD(nome, idFerramenta, dataTexto)) {
+                if (this.objetoemprestimo.insertEmprestimoBD(nome, idFerramenta, dataTexto, NomeDaFerramenta)) {
                     JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
                     this.JTFNomeAmigo.setText("");
                     this.JTFIdFerramenta.setText("");

@@ -153,7 +153,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                     int linhaSelecionada = this.JTableEmprestimoAtivo.getSelectedRow();
                     nomeAmigo = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 1).toString();
                     dataTexto = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 3).toString();
-                    idFerramenta = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 2).toString());
+                    idFerramenta = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 0).toString());
 
                     if (this.objetodevolução.insertDevoluçãoBD( nomeAmigo, idFerramenta, dataTexto)) {
                         JOptionPane.showMessageDialog(null, "Empréstimo encerrado com sucesso.");
@@ -186,7 +186,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 a.getId(),
                 a.getNomeAmigo(),
-                a.getIdFerramenta(),
+                a.getNomeDaFerramenta(),
                 a.getData()
             });
         }
