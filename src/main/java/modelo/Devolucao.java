@@ -1,9 +1,9 @@
 package modelo;
 
-import dao.DevoluçãoDAO;
+import dao.DevolucaoDAO;
 import java.util.ArrayList;
 
-public class Devolução {
+public class Devolucao {
 
     //Atributos de Devolução
     private String nomeAmigo;
@@ -12,7 +12,7 @@ public class Devolução {
     private int id;
     private String NomeDaFerrmentaD;
     //Construtores
-    public Devolução() {
+    public Devolucao() {
         this.nomeAmigo = "";
         this.idFerramenta = 0;
         this.data = "";
@@ -20,7 +20,7 @@ public class Devolução {
         this.NomeDaFerrmentaD = "";
     }
 
-    public Devolução(String nomeAmigo, int idFerramenta, String data, int id,String NomeDaFerrmentaD) {
+    public Devolucao(String nomeAmigo, int idFerramenta, String data, int id,String NomeDaFerrmentaD) {
         this.nomeAmigo = nomeAmigo;
         this.idFerramenta = idFerramenta;
         this.data = data;
@@ -68,44 +68,44 @@ public class Devolução {
         this.NomeDaFerrmentaD = NomeDaFerrmentaD;
     }
 
-    public ArrayList<Devolução> getListaDevolução() {
-        return DevoluçãoDAO.getListaDevolução();
+    public ArrayList<Devolucao> getListaDevolução() {
+        return DevolucaoDAO.getListaDevolução();
     }
 
     public boolean insertDevoluçãoBD(String nomeAmigo, int idFerramenta, String data,String NomeDaFerrmentaD) {
         int id = this.maiorID() + 1;
-        Devolução objeto = new Devolução(nomeAmigo, idFerramenta, data, id,NomeDaFerrmentaD);
-        DevoluçãoDAO.ListaDevolução.add(objeto);
+        Devolucao objeto = new Devolucao(nomeAmigo, idFerramenta, data, id,NomeDaFerrmentaD);
+        DevolucaoDAO.ListaDevolução.add(objeto);
         return true;
     }
 
     public boolean deleteDevoluçãoBD(int id) {
         int indice = this.procuraIndice(id);
         if (indice >= 0) {
-            DevoluçãoDAO.ListaDevolução.remove(indice);
+            DevolucaoDAO.ListaDevolução.remove(indice);
             return true;
         }
         return false;
     }
 
     private int procuraIndice(int id) {
-        for (int i = 0; i < DevoluçãoDAO.ListaDevolução.size(); i++) {
-            if (DevoluçãoDAO.ListaDevolução.get(i).getId() == id) {
+        for (int i = 0; i < DevolucaoDAO.ListaDevolução.size(); i++) {
+            if (DevolucaoDAO.ListaDevolução.get(i).getId() == id) {
                 return i;
             }
         }
         return -1;
     }
 
-    public Devolução carregaDevolução(int id) {
+    public Devolucao carregaDevolução(int id) {
         int indice = this.procuraIndice(id);
         if (indice >= 0) {
-            return DevoluçãoDAO.ListaDevolução.get(indice);
+            return DevolucaoDAO.ListaDevolução.get(indice);
         }
         return null;
     }
 
     public int maiorID() {
-        return DevoluçãoDAO.maiorID();
+        return DevolucaoDAO.maiorID();
     }
 }

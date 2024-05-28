@@ -3,15 +3,15 @@ package visao;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import modelo.Devolução;
+import modelo.Devolucao;
 
 public class FrmHistoricoDeEmprestimos extends javax.swing.JFrame {
 
-    private Devolução objetodevolução;
+    private Devolucao objetodevolução;
 
     public FrmHistoricoDeEmprestimos() {
         initComponents();
-        this.objetodevolução = new Devolução();
+        this.objetodevolução = new Devolucao();
         this.carregaTabela();
     }
 
@@ -106,8 +106,8 @@ public class FrmHistoricoDeEmprestimos extends javax.swing.JFrame {
         public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableEmprestimoAtivo.getModel();
         modelo.setNumRows(0);
-        ArrayList<Devolução> minhaLista = objetodevolução.getListaDevolução();
-        for (Devolução a : minhaLista) {
+        ArrayList<Devolucao> minhaLista = objetodevolução.getListaDevolução();
+        for (Devolucao a : minhaLista) {
             modelo.addRow(new Object[]{
                 a.getId(),
                 a.getNomeAmigo(),

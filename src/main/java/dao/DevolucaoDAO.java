@@ -2,20 +2,20 @@
 package dao;
 
 import java.util.ArrayList;
-import modelo.Devolução;
+import modelo.Devolucao;
 
-public class DevoluçãoDAO {
+public class DevolucaoDAO {
     
       //Cria ArrayList da Devolução
-    public static ArrayList<Devolução> ListaDevolução = new ArrayList<>();
+    public static ArrayList<Devolucao> ListaDevolução = new ArrayList<>();
 
     //Métodos Getter e Setter da ArrayList de Devolução
-    public static ArrayList<Devolução> getListaDevolução() {
+    public static ArrayList<Devolucao> getListaDevolução() {
         return ListaDevolução;
     }
 
-    public static void setListaDevolução(ArrayList<Devolução> ListaDevolução) {
-        DevoluçãoDAO.ListaDevolução = ListaDevolução;
+    public static void setListaDevolução(ArrayList<Devolucao> ListaDevolução) {
+        DevolucaoDAO.ListaDevolução = ListaDevolução;
     }
 
     public static int maiorID() {

@@ -4,18 +4,18 @@ import static dao.FerramentaDAO.ListaFerramenta;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Devolução;
+import modelo.Devolucao;
 import modelo.Emprestimo;
 
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
     private Emprestimo objetoemprestimo;
-    private Devolução objetodevolução;
+    private Devolucao objetodevolução;
 
     public FrmRelatorioEmprestimo() {
         initComponents();
         this.objetoemprestimo = new Emprestimo(); //Carrega objetoemprestimo de Emprestimo
-        this.objetodevolução = new Devolução(); //Carrega objetodevolução de Devolução
+        this.objetodevolução = new Devolucao(); //Carrega objetodevolução de Devolução
         this.carregaTabela();
     }
 
