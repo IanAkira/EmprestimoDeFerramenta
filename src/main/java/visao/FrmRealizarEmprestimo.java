@@ -1,6 +1,7 @@
 package visao;
 
 import static dao.AmigoDAO.ListaAmigo;
+import dao.EmprestimoDAO;
 import static dao.FerramentaDAO.ListaFerramenta;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,11 +12,12 @@ import modelo.Ferramenta;
 
 public class FrmRealizarEmprestimo extends javax.swing.JFrame {
 
-    private Emprestimo objetoemprestimo;
+    private EmprestimoDAO emprestimoDAO;
 
     public FrmRealizarEmprestimo() {
         initComponents();
-        this.objetoemprestimo = new Emprestimo(); //Carrega objetoemprestimo de Emprestimos
+         this.emprestimoDAO = new EmprestimoDAO(); //Carrega objetoemprestimo de Emprestimos
+         
     }
 
     @SuppressWarnings("unchecked")
@@ -133,72 +135,57 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
     private void JBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBConfirmarActionPerformed
 
         String ProcurarNome = JTFNomeAmigo.getText();  //Cria uma variável com o nome excrito na JTF
-        boolean encontrado = false;       //Variável para armazenar se o nome foi encontrado
+boolean encontrado = false;       //Variável para armazenar se o nome foi encontrado
 
-        for (int i = 0; i < ListaAmigo.size(); i++) {
-            if (ListaAmigo.get(i).getNome().equals(ProcurarNome)) {
-                encontrado = true;
-                break;  //Quebra o loop quando encontra o nome
-            }
-        }
+for (int i = 0; i < ListaAmigo.size(); i++) {
+    if (ListaAmigo.get(i).getNome().equals(ProcurarNome)) {
+        encontrado = true;
+        break;  //Quebra o loop quando encontra o nome
+    }
+}
 
-        String ProcurarIdFerramenta = JTFIdFerramenta.getText();
-        boolean encontradaF = false;
-        for (Ferramenta ferramenta : ListaFerramenta) {
-            if (ferramenta.getId() == Integer.parseInt(ProcurarIdFerramenta)) {
-                encontradaF = true;
-                break;
-            }
-        }
+String ProcurarIdFerramenta = JTFIdFerramenta.getText();
+boolean encontradaF = false;
+Ferramenta ferramentaEncontrada = null;
 
-        if (encontradaF && encontrado) {
+for (Ferramenta ferramenta : ListaFerramenta) {
+    if (ferramenta.getId() == Integer.parseInt(ProcurarIdFerramenta)) {
+        encontradaF = true;
+        ferramentaEncontrada = ferramenta;
+        break;
+    }
+}
 
-            try {
-                // Recebendo e validando dados da interface gráfica.
-                String nome = "";
-                int idFerramenta = 0;
-                Date data = null;
-                String NomeDaFerramenta = "";
-                String NomeDaFerramentaD = "";
+if (encontradaF && encontrado) {
+    try {
+        String nome = JTFNomeAmigo.getText();
+        Date dataSelecionada = JTFDataEmprestimo.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataTexto = sdf.format(dataSelecionada);
+        int idFerramenta = Integer.parseInt(JTFIdFerramenta.getText());
+        String nomeFerramenta = ferramentaEncontrada.getNome(); // Obter o nome real da ferramenta
 
-                if (this.JTFNomeAmigo.getText().length() < 2) {
-                    throw new Exception("Nome deve conter ao menos 2 caracteres.");
-                } else {
-                    nome = this.JTFNomeAmigo.getText();
-                }
+        Emprestimo novoEmprestimo = new Emprestimo();
+        novoEmprestimo.setNomeAmigo(nome);
+        novoEmprestimo.setData(dataTexto);
+        novoEmprestimo.setNomeDaFerramenta(nomeFerramenta); // Ajuste para usar o nome real da ferramenta
+        novoEmprestimo.setIdFerramenta(idFerramenta);
 
-                if (this.JTFIdFerramenta.getText().length() <= 0) {
-                    throw new Exception("Digite um valor válido!");
-                } else {
-                    idFerramenta = Integer.parseInt(this.JTFIdFerramenta.getText());
-                }
-                Date dataSelecionada = this.JTFDataEmprestimo.getDate();
+        EmprestimoDAO dao = new EmprestimoDAO();
+        boolean inserido = dao.insertEmprestimoBD(novoEmprestimo);
 
-                // Formatando a data como uma string no formato desejado
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                String dataTexto = sdf.format(dataSelecionada);
-                
-                // Buscando o nome da Ferramenta pelo id
-                int NovoIdFerramenta = idFerramenta - 1;
-                NomeDaFerramenta = ListaFerramenta.get(NovoIdFerramenta).getNome();
-                NomeDaFerramentaD = NomeDaFerramenta;
-                
-                
-
-                if (this.objetoemprestimo.insertEmprestimoBD(nome, idFerramenta, dataTexto, NomeDaFerramenta)) {
-                    JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
-                    this.JTFNomeAmigo.setText("");
-                    this.JTFIdFerramenta.setText("");
-                    this.JTFDataEmprestimo.setDate(null);
-                }
-
-            } catch (Exception erro) {
-                JOptionPane.showMessageDialog(null, erro.getMessage());
-           
-            }
+        if (inserido) {
+            JOptionPane.showMessageDialog(this, "Empréstimo registrado com sucesso!");
         } else {
-            JOptionPane.showMessageDialog(null, "Esta Ferramenta ou Amigo não está cadastrado!");
+            JOptionPane.showMessageDialog(this, "Erro ao registrar empréstimo.");
         }
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
+    }
+} else {
+    JOptionPane.showMessageDialog(this, "Amigo ou ferramenta não encontrados.");
+}
     }//GEN-LAST:event_JBConfirmarActionPerformed
 
     public static void main(String args[]) {

@@ -1,20 +1,21 @@
 
 package visao;
 
+import dao.DevolucaoDAO;
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Devolucao;
 
 public class FrmHistoricoDeEmprestimos extends javax.swing.JFrame {
 
-    private Devolucao objetodevolução;
+    private DevolucaoDAO devolucaoDAO;
 
     public FrmHistoricoDeEmprestimos() {
         initComponents();
-        this.objetodevolução = new Devolucao();
+        this.devolucaoDAO = new DevolucaoDAO();
         this.carregaTabela();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -105,17 +106,18 @@ public class FrmHistoricoDeEmprestimos extends javax.swing.JFrame {
 
         public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableEmprestimoAtivo.getModel();
-        modelo.setNumRows(0);
-        ArrayList<Devolucao> minhaLista = objetodevolução.getListaDevolução();
-        for (Devolucao a : minhaLista) {
-            modelo.addRow(new Object[]{
-                a.getId(),
-                a.getNomeAmigo(),
-                a.getNomeDaFerrmentaD(),
-                a.getData()
-            });
-        }
+    modelo.setNumRows(0);
+    DevolucaoDAO devolucaoDAO = new DevolucaoDAO();
+    ArrayList<Devolucao> minhaLista = devolucaoDAO.getListaDevolucao();
+    for (Devolucao devolucao : minhaLista) {
+        modelo.addRow(new Object[]{
+            devolucao.getId(),
+            devolucao.getNomeAmigo(),
+            devolucao.getNomeDaFerramenta(),
+            devolucao.getData()
+        });
     }
+}
     
     
     
