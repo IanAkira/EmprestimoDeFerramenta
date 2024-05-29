@@ -16,7 +16,7 @@ public class DevolucaoDAO {
     public ArrayList<Devolucao> getListaDevolucao() {
         listaDevolucao.clear();
         try {
-            Statement stmt = getConexão().createStatement();
+            Statement stmt = getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_devolucao");
             while (res.next()) {
                 int id = res.getInt("id");
@@ -35,57 +35,58 @@ public class DevolucaoDAO {
         return listaDevolucao;
     }
 
-    public Connection getConexão() {
-        Connection conexão = null;
+    public Connection getConexao() {
+
+        Connection connection = null;  //instância da conexão
         try {
+            // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
 
-            String server = "localhost";
-            String database = "emprestimosdeferramentas";
+            // Configurar a conexão
+            String server = "localhost"; //caminho do MySQL
+            String database = "emprestimodeferramentas";
             String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
             String password = "root";
 
-            conexão = DriverManager.getConnection(url, user, password);
-            if (conexão != null) {
+            connection = DriverManager.getConnection(url, user, password);
+            // Testando..
+            if (connection != null) {
                 System.out.println("Status: Conectado!");
             } else {
                 System.out.println("Status: NÃO CONECTADO!");
             }
-            return conexão;
-        } catch (ClassNotFoundException e) {
-            System.out.println("O driver não foi encontrado. " + e.getMessage());
+            return connection;
+
+        } catch (ClassNotFoundException e) {  //Driver não encontrado
+            System.out.println("O driver nao foi encontrado. " + e.getMessage());
             return null;
         } catch (SQLException e) {
-            System.out.println("Não foi possível conectar...");
+            System.out.println("Nao foi possivel conectar...");
             return null;
         }
     }
 
-    public boolean insertDevolucaoBD(Devolucao devolucao) {
-        String sql = "INSERT INTO tb_devolucao (nomeAmigo, idFerramenta, data, id, nomeDaFerramenta) VALUES (?, ?, ?, ?, ?)";
-        try {
-            Connection conexão = this.getConexão();
-            if (conexão == null) {
-                throw new SQLException("Não foi possível conectar ao banco de dados.");
-            }
+   public boolean insertDevolucaoBD(Devolucao objeto) {
+    String sql = "INSERT INTO tb_devolucao(id, nomeAmigo, idFerramenta, nomeDaFerramenta, data) VALUES(?, ?, ?, ?, ?)";
+    try {
+        PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 
-            PreparedStatement stmt = conexão.prepareStatement(sql);
-            stmt.setString(1, devolucao.getNomeAmigo());
-            stmt.setInt(2, devolucao.getIdFerramenta());
-            stmt.setString(3, devolucao.getData());
-            stmt.setInt(4, devolucao.getId());
-            stmt.setString(5, devolucao.getNomeDaFerramenta());
+        stmt.setInt(1, objeto.getId());
+        stmt.setString(2, objeto.getNomeAmigo());
+        stmt.setInt(3, objeto.getIdFerramenta());
+        stmt.setString(4, objeto.getNomeDaFerramenta());
+        stmt.setString(5, objeto.getData());
 
-            stmt.executeUpdate();
-            stmt.close();
-            conexão.close();
-            
-            return true;
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
+        stmt.execute();
+        stmt.close();
+
+        return true;
+    } catch (SQLException erro) {
+        System.out.println("Erro:" + erro);
+        throw new RuntimeException(erro);
     }
-}
+}}
+   
+

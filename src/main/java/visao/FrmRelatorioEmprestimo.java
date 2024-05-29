@@ -128,75 +128,75 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
     private void JBDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBDevolucaoActionPerformed
         try {
-    int id = 0;
+            int id = 0;
 
-    if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
-        throw new Mensagem("Selecione um empréstimo primeiro.");
-    } else {
-        id = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(this.JTableEmprestimoAtivo.getSelectedRow(), 0).toString());
-    }
-
-    int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja encerrar este empréstimo?");
-
-    if (respostaUsuario == 0) {
-        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
-
-        if (emprestimoDAO.deleteEmprestimoBD(id)) {
-            try {
-                String nomeAmigo = "";
-                String dataTexto = "";
-                int idFerramenta = 0;
-                String NomeDaFerramenta = "";
-
-                if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
-                    throw new Mensagem("Selecione uma linha da tabela.");
-                }
-
-                int linhaSelecionada = this.JTableEmprestimoAtivo.getSelectedRow();
-                nomeAmigo = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 1).toString();
-                dataTexto = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 3).toString();
-                idFerramenta = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 0).toString());
-                NomeDaFerramenta = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 2).toString();
-
-                DevolucaoDAO devolucaoDAO = new DevolucaoDAO();
-                if (devolucaoDAO.insertDevolucaoBD(new Devolucao(nomeAmigo, idFerramenta, dataTexto, 0, NomeDaFerramenta))) {
-                    int NovoIdFerramenta = idFerramenta - 1;
-                    NomeDaFerramenta = ListaFerramenta.get(NovoIdFerramenta).getNome();
-                    JOptionPane.showMessageDialog(null, "Empréstimo encerrado com sucesso.");
-                }
-
-                System.out.println(devolucaoDAO.getListaDevolucao().toString());
-
-            } catch (Mensagem erro) {
-                JOptionPane.showMessageDialog(null, erro.getMessage());
-            } catch (NumberFormatException erro2) {
-                JOptionPane.showMessageDialog(null, "Informe um número válido.");
+            if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
+                throw new Mensagem("Selecione um empréstimo primeiro.");
+            } else {
+                id = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(this.JTableEmprestimoAtivo.getSelectedRow(), 0).toString());
             }
-        }
 
-        System.out.println(emprestimoDAO.getListaEmprestimo().toString());
-    }
-} catch (Mensagem erro) {
-    JOptionPane.showMessageDialog(null, erro.getMessage());
-} finally {
-    carregaTabela();
-}
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja encerrar este empréstimo?");
+
+            if (respostaUsuario == 0) {
+                EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+
+                if (emprestimoDAO.deleteEmprestimoBD(id)) {
+                    try {
+                        String nomeAmigo = "";
+                        String dataTexto = "";
+                        int idFerramenta = 0;
+                        String NomeDaFerramenta = "";
+
+                        if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
+                            throw new Mensagem("Selecione uma linha da tabela.");
+                        }
+
+                        int linhaSelecionada = this.JTableEmprestimoAtivo.getSelectedRow();
+                        nomeAmigo = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 1).toString();
+                        dataTexto = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 3).toString();
+                        idFerramenta = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 0).toString());
+                        NomeDaFerramenta = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 2).toString();
+
+                        DevolucaoDAO devolucaoDAO = new DevolucaoDAO();
+                        if (devolucaoDAO.insertDevolucaoBD(new Devolucao(nomeAmigo, idFerramenta, dataTexto, 0, NomeDaFerramenta))) {
+                            int NovoIdFerramenta = idFerramenta - 1;
+                            NomeDaFerramenta = ListaFerramenta.get(NovoIdFerramenta).getNome();
+                            JOptionPane.showMessageDialog(null, "Empréstimo encerrado com sucesso.");
+                        }
+
+                        System.out.println(devolucaoDAO.getListaDevolucao().toString());
+
+                    } catch (Mensagem erro) {
+                        JOptionPane.showMessageDialog(null, erro.getMessage());
+                    } catch (NumberFormatException erro2) {
+                        JOptionPane.showMessageDialog(null, "Informe um número válido.");
+                    }
+                }
+
+                System.out.println(emprestimoDAO.getListaEmprestimo().toString());
+            }
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            carregaTabela();
+        }
     }//GEN-LAST:event_JBDevolucaoActionPerformed
-        
+
     public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableEmprestimoAtivo.getModel();
-    modelo.setNumRows(0);
-    EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
-    ArrayList<Emprestimo> minhaLista = emprestimoDAO.getListaEmprestimo();
-    for (Emprestimo a : minhaLista) {
-        modelo.addRow(new Object[]{
-            a.getId(),
-            a.getNomeAmigo(),
-            a.getNomeDaFerramenta(),
-            a.getData()
-        });
+        modelo.setNumRows(0);
+        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+        ArrayList<Emprestimo> minhaLista = emprestimoDAO.getListaEmprestimo();
+        for (Emprestimo a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getNomeAmigo(),
+                a.getNomeDaFerramenta(),
+                a.getData()
+            });
+        }
     }
-}
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

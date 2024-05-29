@@ -1,5 +1,8 @@
 package modelo;
 
+import dao.DevolucaoDAO;
+import java.util.ArrayList;
+
 public class Devolucao {
 
     //Atributos de Devolução
@@ -8,6 +11,8 @@ public class Devolucao {
     private String data;
     private int id;
     private String NomeDaFerramenta;
+    
+    private DevolucaoDAO dao;
 
     //Construtores
     public Devolucao() {
@@ -16,6 +21,7 @@ public class Devolucao {
         this.data = "";
         this.id = 0;
         this.NomeDaFerramenta = "";
+        this.dao = new DevolucaoDAO();
     }
 
     public Devolucao(String nomeAmigo, int idFerramenta, String data, int id, String NomeDaFerrmentaD) {
@@ -67,4 +73,14 @@ public class Devolucao {
         this.NomeDaFerramenta = NomeDaFerramenta;
     }
 
+    public ArrayList<Devolucao> getListaDevolucao() {
+        return dao.getListaDevolucao();
+    }
+
+    public boolean insertDevolucaoBD(String nomeAmigo, int idFerramenta, String data, int id, String NomeDaFerrmentaD) {
+        Devolucao objeto = new Devolucao( nomeAmigo,  idFerramenta,  data,  id, NomeDaFerrmentaD);
+        dao.insertDevolucaoBD(objeto);
+        return true;
+    }
+    
 }
