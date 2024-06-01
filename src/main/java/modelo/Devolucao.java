@@ -5,44 +5,32 @@ import java.util.ArrayList;
 
 public class Devolucao {
 
-    //Atributos de Devolução
+    // Atributos de Devolução
     private String nomeAmigo;
     private int idFerramenta;
     private String data;
     private int id;
-    private String NomeDaFerramenta;
+    private String nomeDaFerramenta;
     
     private DevolucaoDAO dao;
 
-    //Construtores
+    // Construtores
     public Devolucao() {
-        this.nomeAmigo = "";
-        this.idFerramenta = 0;
-        this.data = "";
-        this.id = 0;
-        this.NomeDaFerramenta = "";
-        this.dao = new DevolucaoDAO();
+        this("", 0, "", 0, "");
     }
 
-    public Devolucao(String nomeAmigo, int idFerramenta, String data, int id, String NomeDaFerrmentaD) {
+    public Devolucao(String nomeAmigo, int idFerramenta, String data, int id, String nomeDaFerramenta) {
         this.nomeAmigo = nomeAmigo;
         this.idFerramenta = idFerramenta;
         this.data = data;
         this.id = id;
-        this.NomeDaFerramenta = NomeDaFerrmentaD;
+        this.nomeDaFerramenta = nomeDaFerramenta;
+        this.dao = new DevolucaoDAO();
     }
 
-    //Getters e Setters
+    // Getters e Setters
     public String getNomeAmigo() {
         return nomeAmigo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setNomeAmigo(String nomeAmigo) {
@@ -65,22 +53,34 @@ public class Devolucao {
         this.data = data;
     }
 
-    public String getNomeDaFerramenta() {
-        return NomeDaFerramenta;
+    public int getId() {
+        return id;
     }
 
-    public void setNomeDaFerramenta(String NomeDaFerramenta) {
-        this.NomeDaFerramenta = NomeDaFerramenta;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomeDaFerramenta() {
+        return nomeDaFerramenta;
+    }
+
+    public void setNomeDaFerramenta(String nomeDaFerramenta) {
+        this.nomeDaFerramenta = nomeDaFerramenta;
     }
 
     public ArrayList<Devolucao> getListaDevolucao() {
         return dao.getListaDevolucao();
     }
 
-    public boolean insertDevolucaoBD(String nomeAmigo, int idFerramenta, String data, int id, String NomeDaFerrmentaD) {
-        Devolucao objeto = new Devolucao( nomeAmigo,  idFerramenta,  data,  id, NomeDaFerrmentaD);
-        dao.insertDevolucaoBD(objeto);
-        return true;
-    }
+    public boolean insertDevolucaoBD(String nomeAmigo, int idFerramenta, String data, String nomeDaFerramenta) {
+    Devolucao objeto = new Devolucao(nomeAmigo, idFerramenta, data, 0, nomeDaFerramenta); // O ID será gerado pelo BD
+    dao.insertDevolucaoBD(objeto);
+    return true;
+}
     
+    // Retorna o maior ID da base de dados
+    public int maiorID() {
+        return dao.maiorID();
+    }
 }

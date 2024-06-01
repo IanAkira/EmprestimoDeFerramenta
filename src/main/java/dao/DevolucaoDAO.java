@@ -34,24 +34,37 @@ public class DevolucaoDAO {
         }
         return listaDevolucao;
     }
+    
+    public int maiorID() {
+    int maiorID = 0;
+    try {
+        Statement stmt = this.getConexao().createStatement();
+        ResultSet res = stmt.executeQuery("SELECT MAX(id) AS id FROM tb_devolucao");
+        if (res.next()) {
+            maiorID = res.getInt("id");
+        }
+        stmt.close();
+    } catch (SQLException ex) {
+        System.out.println("Erro: " + ex);
+    }
+    return maiorID;
+}
+
 
     public Connection getConexao() {
-
-        Connection connection = null;  //instância da conexão
+        Connection connection = null;
         try {
-            // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
 
-            // Configurar a conexão
-            String server = "localhost"; //caminho do MySQL
+            String server = "localhost";
             String database = "emprestimodeferramentas";
             String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
             String password = "root";
 
             connection = DriverManager.getConnection(url, user, password);
-            // Testando..
+
             if (connection != null) {
                 System.out.println("Status: Conectado!");
             } else {
@@ -59,7 +72,7 @@ public class DevolucaoDAO {
             }
             return connection;
 
-        } catch (ClassNotFoundException e) {  //Driver não encontrado
+        } catch (ClassNotFoundException e) {
             System.out.println("O driver nao foi encontrado. " + e.getMessage());
             return null;
         } catch (SQLException e) {
@@ -68,25 +81,24 @@ public class DevolucaoDAO {
         }
     }
 
-   public boolean insertDevolucaoBD(Devolucao objeto) {
-    String sql = "INSERT INTO tb_devolucao(id, nomeAmigo, idFerramenta, nomeDaFerramenta, data) VALUES(?, ?, ?, ?, ?)";
+    public boolean insertDevolucaoBD(Devolucao objeto) {
+    String sql = "INSERT INTO tb_devolucao(nomeAmigo, idFerramenta, nomeDaFerramenta, data) VALUES(?, ?, ?, ?)";
     try {
         PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 
-        stmt.setInt(1, objeto.getId());
-        stmt.setString(2, objeto.getNomeAmigo());
-        stmt.setInt(3, objeto.getIdFerramenta());
-        stmt.setString(4, objeto.getNomeDaFerramenta());
-        stmt.setString(5, objeto.getData());
+        System.out.println("Inserindo Devolução: " + objeto);  // Adicione esta linha para debug
+        stmt.setString(1, objeto.getNomeAmigo());
+        stmt.setInt(2, objeto.getIdFerramenta());
+        stmt.setString(3, objeto.getNomeDaFerramenta());
+        stmt.setString(4, objeto.getData());
 
         stmt.execute();
         stmt.close();
 
         return true;
     } catch (SQLException erro) {
-        System.out.println("Erro:" + erro);
+        System.out.println("Erro: " + erro);
         throw new RuntimeException(erro);
     }
-}}
-   
-
+  }
+}

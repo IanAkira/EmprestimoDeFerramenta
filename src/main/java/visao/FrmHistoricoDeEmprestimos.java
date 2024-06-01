@@ -1,4 +1,3 @@
-
 package visao;
 
 import dao.DevolucaoDAO;
@@ -104,20 +103,19 @@ public class FrmHistoricoDeEmprestimos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
-        public void carregaTabela() {
+    public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableEmprestimoAtivo.getModel();
-    modelo.setNumRows(0);
-    DevolucaoDAO devolucaoDAO = new DevolucaoDAO();
-    ArrayList<Devolucao> minhaLista = devolucaoDAO.getListaDevolucao();
-    for (Devolucao devolucao : minhaLista) {
-        modelo.addRow(new Object[]{
-            devolucao.getId(),
-            devolucao.getNomeAmigo(),
-            devolucao.getNomeDaFerramenta(),
-            devolucao.getData()
-        });
+        modelo.setNumRows(0);
+        ArrayList<Devolucao> minhaLista = devolucaoDAO.getListaDevolucao();
+        for (Devolucao devolucao : minhaLista) {
+            modelo.addRow(new Object[]{
+                devolucao.getId(),
+                devolucao.getNomeAmigo(),
+                devolucao.getNomeDaFerramenta(),
+                devolucao.getData()
+            });
+        }
     }
-}
     
     
     
