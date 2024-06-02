@@ -1,28 +1,33 @@
 package modelo;
 
-
+/**
+ * Classe que representa uma ferramenta.
+ */
 public class Ferramenta {
-    
-    //Atributos Ferramenta
+
+    // Atributos da Ferramenta
     private int Id;
     private String Nome;
     private String Marca;
     private int Valor;
-    
-    //Construtores
-    public Ferramenta(){
-        this (0, "", "", 0);
+
+    // Construtores
+    public Ferramenta() {
+        this(0, "", "", 0);
     }
-    
-    public Ferramenta (int Id, String Nome, String Marca, int Valor){
+
+    /**
+     * Construtor para criar uma nova Ferramenta.
+     */
+    public Ferramenta(int Id, String Nome, String Marca, int Valor) {
         this.Id = Id;
         this.Nome = Nome;
         this.Marca = Marca;
         this.Valor = Valor;
     }
-    
-    //Getters and Setters
-     public int getId() {
+
+    // Getters and Setters
+    public int getId() {
         return Id;
     }
 
@@ -52,7 +57,5 @@ public class Ferramenta {
 
     public void setValor(int Valor) {
         this.Valor = Valor;
-    }   
-    
-     
+    }
 }

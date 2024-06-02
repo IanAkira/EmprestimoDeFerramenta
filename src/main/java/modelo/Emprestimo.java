@@ -1,14 +1,25 @@
 package modelo;
 
+/**
+ * Classe que representa um empréstimo.
+ */
 public class Emprestimo {
+
     private int id;
     private String nomeAmigo;
     private String data;
     private String nomeDaFerramenta;
     private int idFerramenta;
 
-    public Emprestimo() {}
+    /**
+     * Construtor padrão.
+     */
+    public Emprestimo() {
+    }
 
+    /**
+     * Construtor para criar um objeto Emprestimo.
+     */
     public Emprestimo(int id, String nomeAmigo, String data, String nomeDaFerramenta, int idFerramenta) {
         this.id = id;
         this.nomeAmigo = nomeAmigo;
@@ -18,7 +29,6 @@ public class Emprestimo {
     }
 
     // Getters and Setters
-
     public int getId() {
         return id;
     }

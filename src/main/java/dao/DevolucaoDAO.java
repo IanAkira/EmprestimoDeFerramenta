@@ -9,10 +9,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Devolucao;
 
+/**
+ * Classe que define as operações de acesso a dados para a entidade de
+ * Devolucao.
+ */
 public class DevolucaoDAO {
-    
+
+    /**
+     * Lista para armazenar objetos de Devolucao recuperados do banco de dados.
+     */
     public static ArrayList<Devolucao> listaDevolucao = new ArrayList<>();
 
+    /**
+     * Método para obter a lista de devoluções do banco de dados.
+     */
     public ArrayList<Devolucao> getListaDevolucao() {
         listaDevolucao.clear();
         try {
@@ -34,23 +44,28 @@ public class DevolucaoDAO {
         }
         return listaDevolucao;
     }
-    
+
+    /**
+     * Método para obter o maior ID de devolução do banco de dados.
+     */
     public int maiorID() {
-    int maiorID = 0;
-    try {
-        Statement stmt = this.getConexao().createStatement();
-        ResultSet res = stmt.executeQuery("SELECT MAX(id) AS id FROM tb_devolucao");
-        if (res.next()) {
-            maiorID = res.getInt("id");
+        int maiorID = 0;
+        try {
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT MAX(id) AS id FROM tb_devolucao");
+            if (res.next()) {
+                maiorID = res.getInt("id");
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex);
         }
-        stmt.close();
-    } catch (SQLException ex) {
-        System.out.println("Erro: " + ex);
+        return maiorID;
     }
-    return maiorID;
-}
 
-
+    /**
+     * Método para obter uma conexão com o banco de dados.
+     */
     public Connection getConexao() {
         Connection connection = null;
         try {
@@ -81,24 +96,27 @@ public class DevolucaoDAO {
         }
     }
 
+    /**
+     * Método para inserir uma devolução no banco de dados.
+     */
     public boolean insertDevolucaoBD(Devolucao objeto) {
-    String sql = "INSERT INTO tb_devolucao(nomeAmigo, idFerramenta, nomeDaFerramenta, data) VALUES(?, ?, ?, ?)";
-    try {
-        PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+        String sql = "INSERT INTO tb_devolucao(nomeAmigo, idFerramenta, nomeDaFerramenta, data) VALUES(?, ?, ?, ?)";
+        try {
+            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 
-        System.out.println("Inserindo Devolução: " + objeto);  // Adicione esta linha para debug
-        stmt.setString(1, objeto.getNomeAmigo());
-        stmt.setInt(2, objeto.getIdFerramenta());
-        stmt.setString(3, objeto.getNomeDaFerramenta());
-        stmt.setString(4, objeto.getData());
+            System.out.println("Inserindo Devolução: " + objeto);  // Adicione esta linha para debug
+            stmt.setString(1, objeto.getNomeAmigo());
+            stmt.setInt(2, objeto.getIdFerramenta());
+            stmt.setString(3, objeto.getNomeDaFerramenta());
+            stmt.setString(4, objeto.getData());
 
-        stmt.execute();
-        stmt.close();
+            stmt.execute();
+            stmt.close();
 
-        return true;
-    } catch (SQLException erro) {
-        System.out.println("Erro: " + erro);
-        throw new RuntimeException(erro);
+            return true;
+        } catch (SQLException erro) {
+            System.out.println("Erro: " + erro);
+            throw new RuntimeException(erro);
+        }
     }
-  }
 }

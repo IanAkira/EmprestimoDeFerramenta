@@ -9,11 +9,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Emprestimo;
 
+/**
+ * Classe que define as operações de acesso a dados para a entidade de
+ * Emprestimo.
+ */
 public class EmprestimoDAO {
-    
+
     //Cria ArrayList dos Emprestimos
     public static ArrayList<Emprestimo> ListaEmprestimo = new ArrayList<>();
 
+    /**
+     * Método para obter a lista de empréstimos do banco de dados.
+     */
     public ArrayList<Emprestimo> getListaEmprestimo() {
         ListaEmprestimo.clear();
         try {
@@ -36,10 +43,16 @@ public class EmprestimoDAO {
         return ListaEmprestimo;
     }
 
+    /**
+     * Método para definir a lista de empréstimos.
+     */
     public void setListaEmprestimo(ArrayList<Emprestimo> ListaEmprestimo) {
         this.ListaEmprestimo = ListaEmprestimo;
     }
-    
+
+    /**
+     * Método para obter o maior ID de empréstimo do banco de dados.
+     */
     public int maiorID() {
         int maiorID = 0;
         try {
@@ -53,7 +66,10 @@ public class EmprestimoDAO {
         }
         return maiorID;
     }
-    
+
+    /**
+     * Método para obter uma conexão com o banco de dados.
+     */
     public Connection getConexao() {
         Connection connection = null;
         try {
@@ -82,6 +98,9 @@ public class EmprestimoDAO {
         }
     }
 
+    /**
+     * Método para inserir um empréstimo no banco de dados.
+     */
     public boolean insertEmprestimoBD(Emprestimo objeto) {
         String sql = "INSERT INTO tb_emprestimos (id, nome, data, nomeDaFerramenta, idFerramenta) VALUES (?, ?, ?, ?, ?)";
         try {
@@ -89,7 +108,7 @@ public class EmprestimoDAO {
             if (connection == null) {
                 throw new SQLException("Não foi possível conectar ao banco de dados.");
             }
-            
+
             String sqlUltimoId = "SELECT MAX(id) AS max_id FROM tb_emprestimos";
             Statement stmtUltimoId = connection.createStatement();
             ResultSet rsUltimoId = stmtUltimoId.executeQuery(sqlUltimoId);
@@ -99,7 +118,7 @@ public class EmprestimoDAO {
             }
             rsUltimoId.close();
             stmtUltimoId.close();
-            
+
             int novoId = ultimoId + 1;
 
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -112,7 +131,7 @@ public class EmprestimoDAO {
             stmt.executeUpdate();
             stmt.close();
             connection.close();
-            
+
             return true;
         } catch (SQLException erro) {
             System.out.println("Erro:" + erro);
@@ -120,6 +139,9 @@ public class EmprestimoDAO {
         }
     }
 
+    /**
+     * Método para excluir um empréstimo do banco de dados.
+     */
     public boolean deleteEmprestimoBD(int id) {
         try {
             Statement stmt = this.getConexao().createStatement();
@@ -131,6 +153,9 @@ public class EmprestimoDAO {
         return true;
     }
 
+    /**
+     * Método para carregar um empréstimo do banco de dados com base no ID.
+     */
     public Emprestimo carregaEmprestimo(int id) {
         Emprestimo objeto = new Emprestimo();
         objeto.setId(id);
