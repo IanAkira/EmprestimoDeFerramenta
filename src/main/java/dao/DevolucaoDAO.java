@@ -8,12 +8,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Devolucao;
+import static dao.AmigoDAO.getConexao;
 
 /**
  * Classe que define as operações de acesso a dados para a entidade de
  * Devolucao.
  */
 public class DevolucaoDAO {
+    
+     
 
     /**
      * Lista para armazenar objetos de Devolucao recuperados do banco de dados.
@@ -51,7 +54,7 @@ public class DevolucaoDAO {
     public int maiorID() {
         int maiorID = 0;
         try {
-            Statement stmt = this.getConexao().createStatement();
+            Statement stmt = getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT MAX(id) AS id FROM tb_devolucao");
             if (res.next()) {
                 maiorID = res.getInt("id");
@@ -64,45 +67,12 @@ public class DevolucaoDAO {
     }
 
     /**
-     * Método para obter uma conexão com o banco de dados.
-     */
-    public Connection getConexao() {
-        Connection connection = null;
-        try {
-            String driver = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driver);
-
-            String server = "localhost";
-            String database = "emprestimodeferramentas";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "root";
-
-            connection = DriverManager.getConnection(url, user, password);
-
-            if (connection != null) {
-                System.out.println("Status: Conectado!");
-            } else {
-                System.out.println("Status: NÃO CONECTADO!");
-            }
-            return connection;
-
-        } catch (ClassNotFoundException e) {
-            System.out.println("O driver nao foi encontrado. " + e.getMessage());
-            return null;
-        } catch (SQLException e) {
-            System.out.println("Nao foi possivel conectar...");
-            return null;
-        }
-    }
-
-    /**
      * Método para inserir uma devolução no banco de dados.
      */
     public boolean insertDevolucaoBD(Devolucao objeto) {
         String sql = "INSERT INTO tb_devolucao(nomeAmigo, idFerramenta, nomeDaFerramenta, data) VALUES(?, ?, ?, ?)";
         try {
-            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+            PreparedStatement stmt = getConexao().prepareStatement(sql);
 
             System.out.println("Inserindo Devolução: " + objeto);  // Adicione esta linha para debug
             stmt.setString(1, objeto.getNomeAmigo());

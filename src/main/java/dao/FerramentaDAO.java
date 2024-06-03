@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Ferramenta;
+import static dao.AmigoDAO.getConexao;
 
 /**
  * Classe que define as operações de acesso a dados para a entidade Ferramenta.
@@ -54,7 +55,7 @@ public class FerramentaDAO {
     public int maiorID() {
         int maiorID = 0;
         try {
-            Statement stmt = this.getConexao().createStatement();
+            Statement stmt = getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_ferramentas");
             res.next();
             maiorID = res.getInt("id");
@@ -66,48 +67,12 @@ public class FerramentaDAO {
     }
 
     /**
-     * Método para obter uma conexão com o banco de dados.
-     */
-    public Connection getConexao() {
-
-        Connection connection = null;  //instância da conexão
-        try {
-            // Carregamento do JDBC Driver
-            String driver = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driver);
-
-            // Configurar a conexão
-            String server = "localhost"; //caminho do MySQL
-            String database = "emprestimodeferramentas";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "root";
-
-            connection = DriverManager.getConnection(url, user, password);
-            // Teste
-            if (connection != null) {
-                System.out.println("Status: Conectado!");
-            } else {
-                System.out.println("Status: NÃO CONECTADO!");
-            }
-            return connection;
-
-        } catch (ClassNotFoundException e) {  //Driver não encontrado
-            System.out.println("O driver nao foi encontrado. " + e.getMessage());
-            return null;
-        } catch (SQLException e) {
-            System.out.println("Nao foi possivel conectar...");
-            return null;
-        }
-    }
-
-    /**
      * Método para inserir uma ferramenta no banco de dados.
      */
     public boolean insertFerramentaBD(Ferramenta objeto) {
         String sql = "INSERT INTO tb_ferramentas(id, nome, marca, valor) VALUES (?, ?, ?, ?)";
         try {
-            Connection connection = this.getConexao();
+            Connection connection = getConexao();
             if (connection == null) {
                 throw new SQLException("Não foi possível conectar ao banco de dados.");
             }
@@ -150,7 +115,7 @@ public class FerramentaDAO {
      */
     public boolean deleteFerramentaBD(int id) {
         try {
-            Statement stmt = this.getConexao().createStatement();
+            Statement stmt = getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_ferramentas WHERE id = " + id);
             stmt.close();
 
@@ -166,7 +131,7 @@ public class FerramentaDAO {
     public boolean updateFerramentaBD(int id, String nome, String marca, int valor) {
         String sql = "UPDATE tb_ferramentas SET nome = ?, marca = ?, valor = ? WHERE id = ?";
         try {
-            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+            PreparedStatement stmt = getConexao().prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, marca);
             stmt.setInt(3, valor);
@@ -187,7 +152,7 @@ public class FerramentaDAO {
         Ferramenta objeto = new Ferramenta();
         objeto.setId(id);
         try {
-            Statement stmt = this.getConexao().createStatement();
+            Statement stmt = getConexao().createStatement();
 
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas WHERE id = " + id);
             res.next();

@@ -67,7 +67,7 @@ public class AmigoDAO {
     /**
      * Obtém a conexão com o banco de dados.
      */
-    public Connection getConexao() {
+    public static Connection getConexao() {
         Connection connection = null; // instância da conexão
         try {
             // Carregamento do JDBC Driver
