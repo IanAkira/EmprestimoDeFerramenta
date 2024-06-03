@@ -25,28 +25,28 @@ primary key(id)
 
 
 
-##cria tb_Emprestimos
+##cria tb_emprestimos
 use emprestimodeferramentas;
-DROP TABLE IF EXISTS tb_Emprestimos;
-create table tb_Emprestimos (
+DROP TABLE IF EXISTS tb_emprestimos;
+create table tb_emprestimos (
 id integer not null,
-nomeAmigo varchar(100),
-NomeDaFerramenta varchar(100),
-data DATE,
+nome varchar(100),
+nomeDaFerramenta varchar(100),
+data varchar(100),
 idFerramenta integer,
 primary key(id)
 );
 
 
 
-##cria tb_Devolucao
+##cria tb_devolucao
 use emprestimodeferramentas;
-DROP TABLE IF EXISTS tb_Devolucao;
-create table tb_Devolucao (
+DROP TABLE IF EXISTS tb_devolucao;
+create table tb_devolucao (
 id integer not null,
 nomeAmigo varchar(100),
-NomeDaFerramenta varchar(100),
-data DATE,
+nomeDaFerramenta varchar(100),
+data varchar(100),
 idFerramenta integer,
 primary key(id)
 );
