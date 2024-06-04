@@ -1,27 +1,27 @@
 # 🔧 Software Empréstimo de Ferramentas 🔧
-
-
-
-
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ## 📖 Sobre o Trabalho
 
 Este é um projeto de software para controle de empréstimo de ferramentas, desenvolvido como parte do trabalho A3 dos alunos da UNISUL.
-
-
-
-
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ## 💻 Tecnologias Utilizadas
 
-![NetBeans Icon](https://img.icons8.com/color/48/000000/netbeans.png)
+![NetBeans Icon](https://img.icons8.com/dusk/64/000000/netbeans.png)
 ![MySQL Icon](https://img.icons8.com/color/48/000000/mysql-logo.png)
 ![Java Icon](https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png)
 ![GitHub Icon](https://img.icons8.com/ios-filled/50/000000/github-2.png)
 ![Discord Icon](https://img.icons8.com/color/48/000000/discord-new-logo.png)
 ![WhatsApp Icon](https://img.icons8.com/color/48/000000/whatsapp--v6.png)
-
-
-
-
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ## 📌 Requisitos Funcionais
 
 - **RF001:** Cadastro de ferramentas no banco de dados, incluindo nome, marca e valor.
@@ -32,7 +32,8 @@ Este é um projeto de software para controle de empréstimo de ferramentas, dese
 - **RF006:** Registro de empréstimos de ferramentas para amigos com cadastro previamente realizado.
 - **RF007:** Marcação da devolução de ferramentas emprestadas.
 - **RF008:** Acesso a um relatório contendo o histórico de empréstimos realizados anteriormente.
-
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ## 📌 Requisitos Não Funcionais
 
 - **RNF001:** O programa deve ser executado em um sistema operacional compatível, como Windows 10.
