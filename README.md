@@ -18,7 +18,18 @@ Este é um projeto de software para controle de empréstimo de ferramentas, dese
 ![WhatsApp Icon](https://img.icons8.com/color/48/000000/whatsapp--v6.png)
 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ## 📷 Telasㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-[pendente]ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+![Menu Principal](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/702e8b7d-ef65-487a-bfb9-0e316033ac2c)
+![Cadastrar Amigo](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/42aa60ea-1508-4ae6-8f31-7a8eaf8590d4)
+![Cadastrar Ferramenta](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/b87cb576-ee44-4e24-9011-1087735d38b9)
+![Realizar Empréstimo](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/358decdb-e78a-4a84-83cf-37d727c180fe)
+![Gerenciador de Amigos](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/096bc4d5-733b-4daa-8d9f-92c2eb75cf27)
+![Gerenciador de Ferramentas](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/e6d662d3-a747-499a-825b-b4e5d5c4e9df)
+![Relatório de Empréstimos](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/c14cc210-0ef8-47bc-8180-0aac688485aa)
+![Histórico de Empréstimos](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/1ff3d0f2-2410-4035-8312-5191b20f4ef0)
+![Sobre](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/b3f138df-a372-49ac-9068-368379ba51ad)
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ## 📌 Requisitos Funcionais
 
