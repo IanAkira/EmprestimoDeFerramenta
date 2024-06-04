@@ -72,7 +72,7 @@ public class DevolucaoDAO {
     public boolean insertDevolucaoBD(Devolucao objeto) {
         String sql = "INSERT INTO tb_devolucao(nomeAmigo, idFerramenta, nomeDaFerramenta, data,id) VALUES(?,?, ?, ?, ?)";
         try {
-            String sqlUltimoId = "SELECT MAX(id) AS max_id FROM tb_emprestimos";
+            String sqlUltimoId = "SELECT MAX(id) AS max_id FROM tb_devolucao";
             Statement stmtUltimoId = getConexao().createStatement();
             ResultSet rsUltimoId = stmtUltimoId.executeQuery(sqlUltimoId);
             PreparedStatement stmt = getConexao().prepareStatement(sql);
