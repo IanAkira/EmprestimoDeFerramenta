@@ -1,3 +1,20 @@
+# 🔧 Software Empréstimo de Ferramentas 🔧
+
+##📖 Sobre o Trabalho
+
+Este é um projeto de software para controle de empréstimo de ferramentas, desenvolvido como parte do trabalho A3 dos alunos da UNISUL.
+
+## Tecnologias Utilizadas
+
+- [NetBeans](https://netbeans.apache.org/) ![NetBeans Icon](https://img.icons8.com/color/48/000000/netbeans.png)
+- [MySQL](https://www.mysql.com/) ![MySQL Icon](https://img.icons8.com/color/48/000000/mysql-logo.png)
+- [Java](https://www.java.com/) ![Java Icon](https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png)
+- [GitHub](https://github.com/) ![GitHub Icon](https://img.icons8.com/ios-filled/50/000000/github-2.png)
+- [Discord](https://discord.com/) ![Discord Icon](https://img.icons8.com/color/48/000000/discord-new-logo.png)
+- [WhatsApp](https://www.whatsapp.com/) ![WhatsApp Icon](https://img.icons8.com/color/48/000000/whatsapp--v6.png)
+
+
+
 ## Requisitos Funcionais
 
 - **RF001:** Cadastro de ferramentas no banco de dados, incluindo nome, marca e valor.
