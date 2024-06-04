@@ -70,16 +70,27 @@ public class DevolucaoDAO {
      * Método para inserir uma devolução no banco de dados.
      */
     public boolean insertDevolucaoBD(Devolucao objeto) {
-        String sql = "INSERT INTO tb_devolucao(nomeAmigo, idFerramenta, nomeDaFerramenta, data) VALUES(?,?, ?, ?)";
+        String sql = "INSERT INTO tb_devolucao(nomeAmigo, idFerramenta, nomeDaFerramenta, data,id) VALUES(?,?, ?, ?, ?)";
         try {
+            String sqlUltimoId = "SELECT MAX(id) AS max_id FROM tb_devolucao";
+            Statement stmtUltimoId = getConexao().createStatement();
+            ResultSet rsUltimoId = stmtUltimoId.executeQuery(sqlUltimoId);
             PreparedStatement stmt = getConexao().prepareStatement(sql);
+            int ultimoId = 0;
+            if (rsUltimoId.next()) {
+                ultimoId = rsUltimoId.getInt("max_id");
+            }
+            rsUltimoId.close();
+            stmtUltimoId.close();
             
+            int novoId = ultimoId + 1;
 
             System.out.println("Inserindo Devolução: " + objeto);  // Adicione esta linha para debug
             stmt.setString(1, objeto.getNomeAmigo());
             stmt.setInt(2, objeto.getIdFerramenta());
             stmt.setString(3, objeto.getNomeDaFerramenta());
             stmt.setString(4, objeto.getData());
+            stmt.setInt(5, novoId);
 
             stmt.execute();
             stmt.close();
