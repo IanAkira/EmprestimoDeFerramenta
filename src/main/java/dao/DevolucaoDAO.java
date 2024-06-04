@@ -15,8 +15,6 @@ import static dao.AmigoDAO.getConexao;
  * Devolucao.
  */
 public class DevolucaoDAO {
-    
-     
 
     /**
      * Lista para armazenar objetos de Devolucao recuperados do banco de dados.
@@ -82,7 +80,7 @@ public class DevolucaoDAO {
             }
             rsUltimoId.close();
             stmtUltimoId.close();
-            
+
             int novoId = ultimoId + 1;
 
             System.out.println("Inserindo Devolução: " + objeto);  // Adicione esta linha para debug
@@ -100,5 +98,15 @@ public class DevolucaoDAO {
             System.out.println("Erro: " + erro);
             throw new RuntimeException(erro);
         }
+    }
+
+    public int contarEmprestimosPorPessoa(String nomeAmigo) {
+        int count = 0;
+        for (Devolucao devolucao : listaDevolucao) {
+            if (devolucao.getNomeAmigo().equals(nomeAmigo)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
