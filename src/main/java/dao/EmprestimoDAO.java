@@ -51,22 +51,8 @@ public class EmprestimoDAO {
         this.ListaEmprestimo = ListaEmprestimo;
     }
 
-    /**
-     * Método para obter o maior ID de empréstimo do banco de dados.
-     */
-    public int maiorID() {
-        int maiorID = 0;
-        try {
-            Statement stmt = getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_emprestimos");
-            res.next();
-            maiorID = res.getInt("id");
-            stmt.close();
-        } catch (SQLException ex) {
-            System.out.println("Erro:" + ex);
-        }
-        return maiorID;
-    }
+   
+    
 
     /**
      * Método para inserir um empréstimo no banco de dados.
@@ -78,10 +64,10 @@ public class EmprestimoDAO {
             if (connection == null) {
                 throw new SQLException("Não foi possível conectar ao banco de dados.");
             }
-
             String sqlUltimoId = "SELECT MAX(id) AS max_id FROM tb_emprestimos";
             Statement stmtUltimoId = connection.createStatement();
             ResultSet rsUltimoId = stmtUltimoId.executeQuery(sqlUltimoId);
+            
             int ultimoId = 0;
             if (rsUltimoId.next()) {
                 ultimoId = rsUltimoId.getInt("max_id");

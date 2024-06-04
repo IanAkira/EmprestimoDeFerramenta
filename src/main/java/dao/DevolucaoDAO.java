@@ -46,23 +46,8 @@ public class DevolucaoDAO {
         return listaDevolucao;
     }
 
-    /**
-     * Método para obter o maior ID de devolução do banco de dados.
-     */
-    public int maiorID() {
-        int maiorID = 0;
-        try {
-            Statement stmt = getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(id) AS id FROM tb_devolucao");
-            if (res.next()) {
-                maiorID = res.getInt("id");
-            }
-            stmt.close();
-        } catch (SQLException ex) {
-            System.out.println("Erro: " + ex);
-        }
-        return maiorID;
-    }
+    
+    
 
     /**
      * Método para inserir uma devolução no banco de dados.
@@ -75,6 +60,7 @@ public class DevolucaoDAO {
             ResultSet rsUltimoId = stmtUltimoId.executeQuery(sqlUltimoId);
             PreparedStatement stmt = getConexao().prepareStatement(sql);
             int ultimoId = 0;
+            
             if (rsUltimoId.next()) {
                 ultimoId = rsUltimoId.getInt("max_id");
             }

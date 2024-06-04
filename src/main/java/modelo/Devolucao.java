@@ -91,10 +91,6 @@ public class Devolucao {
         return true;
     }
 
-    /**
-     * Método para retornar o maior ID da base de dados.
-     */
-    public int maiorID() {
-        return dao.maiorID();
-    }
+   
+    
 }
