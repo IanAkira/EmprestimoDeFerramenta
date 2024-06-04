@@ -11,8 +11,6 @@
 
 ## Requisitos Não Funcionais
 
-## Requisitos Não Funcionais
-
 - **RNF001:** O programa deve ser executado em um sistema operacional compatível, como Windows 10.
 - **RNF002:** O programa deve ser desenvolvido utilizando Java na versão 22.0.1.
 - **RNF003:** O programa deve ser conectado a uma base de dados MySQL na versão 8.4.0.
