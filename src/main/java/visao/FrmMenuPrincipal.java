@@ -228,7 +228,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                    "9. Acesse relatórios detalhados sobre os empréstimos realizados.\n" +
                    "10. Consulte o histórico completo de empréstimos realizados.\n\n" +
                    "Com esses recursos, você terá controle total sobre quem pegou emprestado suas ferramentas e quando!\n\n"+
-                          "Obrigado por escolher nosso software!");
+                          "Obrigado por escolher nosso software !!");
     }//GEN-LAST:event_jMenuSobreMouseClicked
 
     private void jMenuHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuHistoricoActionPerformed
