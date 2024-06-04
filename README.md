@@ -1,8 +1,6 @@
 # 🔧 Software Empréstimo de Ferramentas 🔧
 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ## 📖 Sobre o Trabalho
 
 Este é um projeto de software para controle de empréstimo de ferramentas, desenvolvido como parte do trabalho A3 dos alunos da UNISUL.
@@ -10,17 +8,17 @@ Este é um projeto de software para controle de empréstimo de ferramentas, dese
 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-## 💻 Tecnologias Utilizadas
+## 💻 Tecnologias e Ferramentas Utilizadas
 
-![NetBeans Icon](https://img.icons8.com/dusk/64/000000/netbeans.png)
+![icons8-apache-netbeans-48](https://github.com/KevinNuness/EmprestimoFerramentas_POO/assets/164961450/21a1b7e5-49ba-43a4-9bbb-819a10af030f)
 ![MySQL Icon](https://img.icons8.com/color/48/000000/mysql-logo.png)
 ![Java Icon](https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png)
 ![GitHub Icon](https://img.icons8.com/ios-filled/50/000000/github-2.png)
 ![Discord Icon](https://img.icons8.com/color/48/000000/discord-new-logo.png)
 ![WhatsApp Icon](https://img.icons8.com/color/48/000000/whatsapp--v6.png)
 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+## 📷 Telasㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+[pendente]ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
 ## 📌 Requisitos Funcionais
 
