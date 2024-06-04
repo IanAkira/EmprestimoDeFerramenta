@@ -11,6 +11,9 @@
 
 ## Requisitos Não Funcionais
 
-- **RNF001:** Disponibilidade contínua do sistema para acesso do administrador.
-- **RNF002:** Otimização para respostas rápidas, minimizando o tempo de carregamento do software.
-- **RNF003:** Resiliência para lidar com falhas no software e no hardware, garantindo a disponibilidade do programa.
+## Requisitos Não Funcionais
+
+- **RNF001:** O programa deve ser executado em um sistema operacional compatível, como Windows 10.
+- **RNF002:** O programa deve ser desenvolvido utilizando Java na versão 22.0.1.
+- **RNF003:** O programa deve ser conectado a uma base de dados MySQL na versão 8.4.0.
+- **RNF004:** O ambiente de desenvolvimento deve ser o Apache NetBeans IDE na versão 21.
