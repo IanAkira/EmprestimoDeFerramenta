@@ -1,9 +1,9 @@
 package visao;
 
-import static dao.AmigoDAO.ListaAmigo;
 import dao.EmprestimoDAO;
 import static dao.EmprestimoDAO.ListaEmprestimo;
 import static dao.FerramentaDAO.ListaFerramenta;
+import static dao.AmigoDAO.ListaAmigo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,14 +11,19 @@ import javax.swing.JOptionPane;
 import modelo.Emprestimo;
 import modelo.Ferramenta;
 
+/**
+ * Classe responsável pela interface gráfica de realização de empréstimo.
+ */
 public class FrmRealizarEmprestimo extends javax.swing.JFrame {
 
-    private EmprestimoDAO emprestimoDAO;
+    private EmprestimoDAO emprestimoDAO; // Objeto para interação com a classe EmprestimoDAO
 
+    /**
+     * Construtor da classe FrmRealizarEmprestimo.
+     */
     public FrmRealizarEmprestimo() {
-        initComponents();
-         this.emprestimoDAO = new EmprestimoDAO(); //Carrega objetoemprestimo de Emprestimos
-         
+        initComponents(); // Inicializa os componentes da interface gráfica
+        this.emprestimoDAO = new EmprestimoDAO(); // Inicializa tabela
     }
 
     @SuppressWarnings("unchecked")
@@ -137,88 +142,86 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
 
         //Atualiza a conexao do banco de dados 
         FrmRelatorioEmprestimo relatorio = new FrmRelatorioEmprestimo();
-        relatorio.setVisible (false);
-        
-        
+        relatorio.setVisible(false);
+
         String ProcurarNome = JTFNomeAmigo.getText();  //Cria uma variável com o nome excrito na JTF
-boolean encontrado = false;       //Variável para armazenar se o nome foi encontrado
+        boolean encontrado = false;       //Variável para armazenar se o nome foi encontrado
 
-for (int i = 0; i < ListaAmigo.size(); i++) {
-    if (ListaAmigo.get(i).getNome().equals(ProcurarNome)) {
-        encontrado = true;
-        break;  //Quebra o loop quando encontra o nome
-    }
-}
-
-String ProcurarIdFerramenta = JTFIdFerramenta.getText();
-boolean encontrada = false;
-Ferramenta ferramentaEncontrada = null;
-
-for (Ferramenta ferramenta : ListaFerramenta) {
-    if (ferramenta.getId() == Integer.parseInt(ProcurarIdFerramenta)) {
-        encontrada = true;
-        ferramentaEncontrada = ferramenta;
-        break;
-    }
-}
-
-String NomeF = "";
-if(encontrada){
- NomeF = ListaFerramenta.get( Integer.parseInt(ProcurarIdFerramenta)- 1).getNome();
-}
-boolean encontradoL = true;
-for (int i = 0; i < ListaEmprestimo.size(); i++) {
-    if (ListaEmprestimo.get(i).getNomeDaFerramenta().equals(NomeF)) {
-        encontradoL = false;
-        break;      }
-}
-
-
-if (encontrada && encontrado && encontradoL) {
-    try {
-        String nome = JTFNomeAmigo.getText();
-        Date dataSelecionada = JTFDataEmprestimo.getDate();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String dataTexto = sdf.format(dataSelecionada);
-        int idFerramenta = Integer.parseInt(JTFIdFerramenta.getText());
-        String nomeFerramenta = ferramentaEncontrada.getNome(); // Obter o nome real da ferramenta
-
-        Emprestimo novoEmprestimo = new Emprestimo();
-        novoEmprestimo.setNomeAmigo(nome);
-        novoEmprestimo.setData(dataTexto);
-        novoEmprestimo.setNomeDaFerramenta(nomeFerramenta); // Ajuste para usar o nome real da ferramenta
-        novoEmprestimo.setIdFerramenta(idFerramenta);
-
-        EmprestimoDAO dao = new EmprestimoDAO();
-        boolean inserido = dao.insertEmprestimoBD(novoEmprestimo);
-
-        if (inserido) {
-            JOptionPane.showMessageDialog(this, "Empréstimo registrado com sucesso!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Erro ao registrar empréstimo.");
+        for (int i = 0; i < ListaAmigo.size(); i++) {
+            if (ListaAmigo.get(i).getNome().equals(ProcurarNome)) {
+                encontrado = true;
+                break;  //Quebra o loop quando encontra o nome
+            }
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
-    }
-} 
-else if (encontrada && encontrado)
-{
-    JOptionPane.showMessageDialog(this, "Ferramenta já está emprestada.");
-}
-else 
-{
-    JOptionPane.showMessageDialog(this, "Amigo ou ferramenta não encontrados.");
-}
+
+        String ProcurarIdFerramenta = JTFIdFerramenta.getText(); //Cria uma variável com o nome excrito na JTF
+        boolean encontrada = false; //Variável para armazenar se o nome foi encontrado
+        Ferramenta ferramentaEncontrada = null;
+
+        for (Ferramenta ferramenta : ListaFerramenta) {
+            if (ferramenta.getId() == Integer.parseInt(ProcurarIdFerramenta)) {
+                encontrada = true;
+                ferramentaEncontrada = ferramenta;
+                break;
+            }
+        }
+
+        String NomeF = "";
+        if (encontrada) {
+            NomeF = ListaFerramenta.get(Integer.parseInt(ProcurarIdFerramenta) - 1).getNome();
+        }
+        // Variável para verificar se a ferramenta já está emprestada
+        boolean encontradoL = true;
+        for (int i = 0; i < ListaEmprestimo.size(); i++) {
+            if (ListaEmprestimo.get(i).getNomeDaFerramenta().equals(NomeF)) {
+                encontradoL = false;
+                break;
+            }
+        }
+
+        // Se o amigo, a ferramenta e a lista de empréstimos estiverem presentes
+        // e a ferramenta não estiver emprestada, prossegue com o registro do empréstimo
+        if (encontrada && encontrado && encontradoL) {
+            try {
+                // Obtém o nome do amigo e a data de empréstimo
+                String nome = JTFNomeAmigo.getText();
+                Date dataSelecionada = JTFDataEmprestimo.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String dataTexto = sdf.format(dataSelecionada);
+                int idFerramenta = Integer.parseInt(JTFIdFerramenta.getText());
+                String nomeFerramenta = ferramentaEncontrada.getNome(); // Obter o nome real da ferramenta
+
+                // Cria um novo objeto Emprestimo com os detalhes do empréstimo
+                Emprestimo novoEmprestimo = new Emprestimo();
+                novoEmprestimo.setNomeAmigo(nome);
+                novoEmprestimo.setData(dataTexto);
+                novoEmprestimo.setNomeDaFerramenta(nomeFerramenta); // Ajuste para usar o nome real da ferramenta
+                novoEmprestimo.setIdFerramenta(idFerramenta);
+
+                // Instancia um objeto EmprestimoDAO para interagir com o banco de dados
+                EmprestimoDAO dao = new EmprestimoDAO();
+                // Tenta inserir o empréstimo no banco de dados
+                boolean inserido = dao.insertEmprestimoBD(novoEmprestimo);
+
+                // Exibe mensagem de sucesso ou erro, dependendo do resultado
+                if (inserido) {
+                    JOptionPane.showMessageDialog(this, "Empréstimo registrado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao registrar empréstimo.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
+            }
+        } else if (encontrada && encontrado) {
+            JOptionPane.showMessageDialog(this, "Ferramenta já está emprestada.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Amigo ou ferramenta não encontrados.");
+        }
 
     }//GEN-LAST:event_JBConfirmarActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

@@ -6,20 +6,33 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Devolucao;
 
+/**
+ * Classe responsável pela interface gráfica do histórico de empréstimos.
+ */
 public class FrmHistoricoDeEmprestimos extends javax.swing.JFrame {
 
-    private DevolucaoDAO devolucaoDAO;
+    private DevolucaoDAO devolucaoDAO; // Objeto para interação com a classe DevolucaoDAO
 
+    /**
+     * Construtor da classe FrmHistoricoDeEmprestimos.
+     */
     public FrmHistoricoDeEmprestimos() {
-        initComponents();
-        this.devolucaoDAO = new DevolucaoDAO();
-        this.carregaTabela();
-        
+        initComponents(); // Inicializa os componentes da interface gráfica
+        this.devolucaoDAO = new DevolucaoDAO(); // Cria uma instância da classe DevolucaoDAO
+        this.carregaTabela(); // Inicializa a tabela
+
+        // Variáveis para identificar a pessoa com mais empréstimos
         String pessoaComMaisEmprestimos = "";
         int maiorQuantidadeEmprestimos = 0;
+
+        // Obtém a lista de devoluções do banco de dados
         ArrayList<Devolucao> minhaLista = devolucaoDAO.getListaDevolucao();
+
+        // Itera sobre cada devolução na lista
         for (Devolucao devolucao : minhaLista) {
+            // Obtém a quantidade de empréstimos por pessoa
             int quantidadeEmprestimos = devolucaoDAO.contarEmprestimosPorPessoa(devolucao.getNomeAmigo());
+            // Verifica se a quantidade de empréstimos é maior que a quantidade máxima atual
             if (quantidadeEmprestimos > maiorQuantidadeEmprestimos) {
                 maiorQuantidadeEmprestimos = quantidadeEmprestimos;
                 pessoaComMaisEmprestimos = devolucao.getNomeAmigo();
@@ -143,7 +156,7 @@ public class FrmHistoricoDeEmprestimos extends javax.swing.JFrame {
     public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableEmprestimoAtivo.getModel();
         modelo.setNumRows(0);
-        ArrayList<Devolucao> minhaLista = devolucaoDAO.getListaDevolucao();
+        ArrayList<Devolucao> minhaLista = devolucaoDAO.getListaDevolucao(); //Obtem lista de devoluções do DAO
         for (Devolucao devolucao : minhaLista) {
             modelo.addRow(new Object[]{
                 devolucao.getId(),

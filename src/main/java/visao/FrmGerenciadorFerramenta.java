@@ -6,17 +6,26 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Ferramenta;
 
+/**
+ * Classe responsável pela interface gráfica do gerenciador de ferramentas.
+ */
 public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
 
-    private FerramentaDAO ferramentaDAO;
+    private FerramentaDAO ferramentaDAO; // Objeto para interação com a classe FerramentaDAO
 
+    /**
+     * Construtor da classe FrmGerenciadorFerramenta.
+     */
     public FrmGerenciadorFerramenta() {
-        initComponents();
-        this.ferramentaDAO = new FerramentaDAO();
-        this.carregaTabela();
-        this.calculaValorTotal();
+        initComponents(); // Inicializa os componentes da interface gráfica
+        this.ferramentaDAO = new FerramentaDAO(); // Cria uma instância da classe FerramentaDAO
+        this.carregaTabela(); // Inicializa a tabela
+        this.calculaValorTotal(); // Calcula o valor total das ferramentas exibidas
     }
 
+    /**
+     * Calcula o valor total das ferramentas exibidas na tabela.
+     */
     public void calculaValorTotal() {
         double total = 0;
         for (int i = 0; i < JTableFerramenta.getRowCount(); i++) {
@@ -250,14 +259,20 @@ public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
         } finally {
             // Chama o método carregaTabela para atualizar a tabela de ferramentas
             carregaTabela();
+            // Recalcula o valor total
+            calculaValorTotal();
         }
+
     }//GEN-LAST:event_JBApagarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
+    // Método executado quando ocorre um clique na tabela de ferramentas
     private void JTableFerramentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableFerramentaMouseClicked
+
+        // Verifica se alguma ferramenta foi selecionado na tabela
         if (this.JTableFerramenta.getSelectedRow() != -1) {
             String nome = this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 1).toString();
             String marca = this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 2).toString();
@@ -325,6 +340,8 @@ public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
         } finally {
             // Chama o método carregaTabela para atualizar a tabela de ferramentas
             carregaTabela();
+            // Recalcula o valor total
+            calculaValorTotal();
         }
     }//GEN-LAST:event_JBEditarActionPerformed
 
@@ -333,19 +350,18 @@ public class FrmGerenciadorFerramenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelTotalAncestorAdded
 
     public void carregaTabela() {
-    DefaultTableModel modelo = (DefaultTableModel) this.JTableFerramenta.getModel();
-    modelo.setNumRows(0);
-    FerramentaDAO ferramentaDAO = new FerramentaDAO(); // Criar uma instância de FerramentaDAO
-    ArrayList<Ferramenta> minhaLista = ferramentaDAO.getListaFerramenta(); // Obter lista de ferramentas do DAO
-    for (Ferramenta a : minhaLista) {
-        modelo.addRow(new Object[]{
-            a.getId(),
-            a.getNome(),
-            a.getMarca(),
-            a.getValor(),
-        });
+        DefaultTableModel modelo = (DefaultTableModel) this.JTableFerramenta.getModel();
+        modelo.setNumRows(0);
+        FerramentaDAO ferramentaDAO = new FerramentaDAO(); // Criar uma instância de FerramentaDAO
+        ArrayList<Ferramenta> minhaLista = ferramentaDAO.getListaFerramenta(); // Obtem lista de ferramentas do DAO
+        for (Ferramenta a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getNome(),
+                a.getMarca(),
+                a.getValor(),});
+        }
     }
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBApagar;

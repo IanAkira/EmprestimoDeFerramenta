@@ -177,30 +177,35 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuCadastroAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroAmigoActionPerformed
+        //Deixa o menu de cadastro de amigo visível
         FrmCadastrarAmigo amigo = new FrmCadastrarAmigo();
 
         amigo.setVisible(true);
     }//GEN-LAST:event_jMenuCadastroAmigoActionPerformed
 
     private void jMenuGerenciarAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGerenciarAmigosActionPerformed
+        //Deixa o gerenciador de amigos visível
         FrmGerenciadorAmigo amigo = new FrmGerenciadorAmigo();
 
         amigo.setVisible(true);
     }//GEN-LAST:event_jMenuGerenciarAmigosActionPerformed
 
     private void jMenuCadastroFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroFerramentaActionPerformed
+        //Deixa o menu de cadastro de ferramenta visível
         FrmCadastrarFerramenta ferramenta = new FrmCadastrarFerramenta();
 
         ferramenta.setVisible(true);
     }//GEN-LAST:event_jMenuCadastroFerramentaActionPerformed
 
     private void jMenuGerenciarFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGerenciarFerramentasActionPerformed
+       //Deixa o gerenciador de ferramentas visível
         FrmGerenciadorFerramenta ferramenta = new FrmGerenciadorFerramenta();
 
         ferramenta.setVisible(true);
     }//GEN-LAST:event_jMenuGerenciarFerramentasActionPerformed
 
     private void jMenuEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmprestimoActionPerformed
+       //Deixa o menu de emprestimos visível
         FrmRealizarEmprestimo menu = new FrmRealizarEmprestimo();
         menu.setVisible (true);
         FrmGerenciadorAmigo amigo = new FrmGerenciadorAmigo();
@@ -214,6 +219,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuRelatórioActionPerformed
 
     private void jMenuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRelatorioActionPerformed
+       //Deixa o menu de relatorio de empréstimos  visível
         FrmRelatorioEmprestimo menu = new FrmRelatorioEmprestimo();
         menu.setVisible (true);
     }//GEN-LAST:event_jMenuRelatorioActionPerformed

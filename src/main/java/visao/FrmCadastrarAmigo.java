@@ -3,15 +3,21 @@ package visao;
 import javax.swing.JOptionPane;
 import modelo.Amigo;
 
+/**
+ * Classe responsável pela interface gráfica de cadastro de amigo.
+ */
 public class FrmCadastrarAmigo extends javax.swing.JFrame {
 
-    private Amigo objetoamigo;
-    private int id;
+    private Amigo objetoamigo; // Objeto para interação com a classe Amigo
+    private int id; // Identificador do amigo
 
+    /**
+     * Construtor da classe FrmCadastrarAmigo.
+     */
     public FrmCadastrarAmigo() {
 
-        initComponents();
-        this.objetoamigo = new Amigo();
+        initComponents(); // Inicializa os componentes da interface gráfica
+        this.objetoamigo = new Amigo(); // Cria uma instância da classe Amigo
     }
 
     @SuppressWarnings("unchecked")
@@ -150,18 +156,21 @@ public class FrmCadastrarAmigo extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Classe de exceção personalizada para mensagens de erro específicas.
+     */
     public class Mensagem extends Exception {
 
         public Mensagem(String mensagem) {
             super(mensagem);
         }
 
+
     }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

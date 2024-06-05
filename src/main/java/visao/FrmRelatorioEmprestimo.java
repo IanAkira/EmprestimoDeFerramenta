@@ -9,16 +9,22 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Devolucao;
 import modelo.Emprestimo;
 
+/**
+ * Classe responsável pela interface gráfica do relatório de empréstimos.
+ */
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 
-    private EmprestimoDAO EmprestimoDAO;
-    private DevolucaoDAO DevolucaoDAO;
+    private EmprestimoDAO EmprestimoDAO; // Objeto para interação com a classe EmprestimoDAO
+    private DevolucaoDAO DevolucaoDAO; // Objeto para interação com a classe DevolucaoDAO
 
+    /**
+     * Construtor da classe FrmRelatorioEmprestimo.
+     */
     public FrmRelatorioEmprestimo() {
-        initComponents();
-        this.EmprestimoDAO = new EmprestimoDAO();
-        this.DevolucaoDAO = new DevolucaoDAO(); //Carrega objetodevolução de Devolução
-        this.carregaTabela();
+        initComponents(); // Inicializa os componentes da interface gráfica
+        this.EmprestimoDAO = new EmprestimoDAO(); // Cria uma instância da classe EmprestimoDAO
+        this.DevolucaoDAO = new DevolucaoDAO(); // Cria uma instância da classe DevolucaoDAO
+        this.carregaTabela(); // Inicializa tabela
     }
 
     @SuppressWarnings("unchecked")
@@ -130,17 +136,23 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
         try {
             int id = 0;
 
+            // Verifica se alguma linha da tabela de empréstimos ativos está selecionada
             if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
                 throw new Mensagem("Selecione um empréstimo primeiro.");
             } else {
+
+                // Obtém o ID do empréstimo selecionado na tabela
                 id = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(this.JTableEmprestimoAtivo.getSelectedRow(), 0).toString());
             }
 
+            // Pergunta ao usuário se ele deseja encerrar o empréstimo selecionado
             int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja encerrar este empréstimo?");
 
+            // Se o usuário confirmar a ação
             if (respostaUsuario == 0) {
                 EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
 
+                // Deleta o empréstimo do banco de dados
                 if (emprestimoDAO.deleteEmprestimoBD(id)) {
                     try {
                         String nomeAmigo = "";
@@ -148,6 +160,7 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                         int idFerramenta = 0;
                         String NomeDaFerramenta = "";
 
+                        // Verifica se alguma linha da tabela de empréstimos ativos está selecionada novamente
                         if (this.JTableEmprestimoAtivo.getSelectedRow() == -1) {
                             throw new Mensagem("Selecione uma linha da tabela.");
                         }
@@ -158,27 +171,42 @@ public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
                         idFerramenta = Integer.parseInt(this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 0).toString());
                         NomeDaFerramenta = this.JTableEmprestimoAtivo.getValueAt(linhaSelecionada, 2).toString();
 
+                        // Cria uma instância da classe DevolucaoDAO para registrar a devolução da ferramenta
                         DevolucaoDAO devolucaoDAO = new DevolucaoDAO();
                         if (devolucaoDAO.insertDevolucaoBD(new Devolucao(nomeAmigo, idFerramenta, dataTexto, 0, NomeDaFerramenta))) {
+
+                            // Atualiza o nome da ferramenta
                             int NovoIdFerramenta = idFerramenta - 1;
                             NomeDaFerramenta = ListaFerramenta.get(NovoIdFerramenta).getNome();
+
+                            // Exibe uma mensagem de sucesso
                             JOptionPane.showMessageDialog(null, "Empréstimo encerrado com sucesso.");
                         }
 
+                        // Exibe no console a lista de devoluções
                         System.out.println(devolucaoDAO.getListaDevolucao().toString());
 
                     } catch (Mensagem erro) {
+
+                        // Exibe mensagens de erro ao usuário
                         JOptionPane.showMessageDialog(null, erro.getMessage());
                     } catch (NumberFormatException erro2) {
+
+                        // Exibe uma mensagem de erro se o usuário informar um número inválido
                         JOptionPane.showMessageDialog(null, "Informe um número válido.");
                     }
                 }
 
+                // Exibe no console a lista de empréstimos após a ação
                 System.out.println(emprestimoDAO.getListaEmprestimo().toString());
             }
         } catch (Mensagem erro) {
+
+            // Exibe mensagens de erro ao usuário
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
+
+            // Carrega novamente a tabela de empréstimos ativos
             carregaTabela();
         }
     }//GEN-LAST:event_JBDevolucaoActionPerformed

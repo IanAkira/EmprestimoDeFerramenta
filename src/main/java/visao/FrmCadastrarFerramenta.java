@@ -4,16 +4,20 @@ import dao.FerramentaDAO;
 import javax.swing.JOptionPane;
 import modelo.Ferramenta;
 
-
+/**
+ * Classe responsável pela interface gráfica de cadastro de ferramenta.
+ */
 public class FrmCadastrarFerramenta extends javax.swing.JFrame {
 
-    private FerramentaDAO ferramentaDAO;
+    private FerramentaDAO ferramentaDAO; // Objeto para interação com a classe FerramentaDAO
 
+    /**
+     * Construtor da classe FrmCadastrarFerramenta.
+     */
     public FrmCadastrarFerramenta() {
-        initComponents();
-        this.ferramentaDAO = new FerramentaDAO();
+        initComponents(); // Inicializa os componentes da interface gráfica
+        this.ferramentaDAO = new FerramentaDAO(); // Cria uma instância da classe FerramentaDAO
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -111,54 +115,53 @@ public class FrmCadastrarFerramenta extends javax.swing.JFrame {
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
         try {
-        // Recebendo e validando dados da interface gráfica.
-        String nome = "";
-        String marca = "";
-        int valor = 0;
-        int id = 0;
+            // Recebendo e validando dados da interface gráfica.
+            String nome = "";
+            String marca = "";
+            int valor = 0;
+            int id = 0;
 
-        if (this.JTFNome.getText().length() < 2) {
-            throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-        } else {
-            nome = this.JTFNome.getText();
+            if (this.JTFNome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+
+            marca = this.JTFMarca.getText();
+
+            if (this.JTFValor.getText().length() <= 0) {
+                throw new Mensagem("Digite um valor válido!");
+            } else {
+                valor = Integer.parseInt(this.JTFValor.getText());
+            }
+
+            // Cria uma instância do FerramentaDAO
+            FerramentaDAO ferramentaDAO = new FerramentaDAO();
+
+            // Chama o método insertFerramentaBD na classe FerramentaDAO
+            if (ferramentaDAO.insertFerramentaBD(new Ferramenta(id, nome, marca, valor))) {
+                JOptionPane.showMessageDialog(null, "Ferramenta Cadastrada com Sucesso!");
+                // Limpa campos da interface
+                this.JTFNome.setText("");
+                this.JTFMarca.setText("");
+                this.JTFValor.setText("");
+            }
+
+            // Exibe a lista de ferramentas após a operação de inserção
+            System.out.println(ferramentaDAO.getListaFerramenta().toString());
+
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
         }
 
-        marca = this.JTFMarca.getText();
-
-        if (this.JTFValor.getText().length() <= 0) {
-            throw new Mensagem("Digite um valor válido!");
-        } else {
-            valor = Integer.parseInt(this.JTFValor.getText());
-        }
-
-        // Cria uma instância do FerramentaDAO
-        FerramentaDAO ferramentaDAO = new FerramentaDAO();
-
-        // Chama o método insertFerramentaBD na classe FerramentaDAO
-        if (ferramentaDAO.insertFerramentaBD(new Ferramenta(id, nome, marca, valor))) {
-            JOptionPane.showMessageDialog(null, "Ferramenta Cadastrada com Sucesso!");
-            // Limpa campos da interface
-            this.JTFNome.setText("");
-            this.JTFMarca.setText("");
-            this.JTFValor.setText("");
-            
-        }
-
-        // Exibe a lista de ferramentas após a operação de inserção
-        System.out.println(ferramentaDAO.getListaFerramenta().toString());
-
-    } catch (Mensagem erro) {
-        JOptionPane.showMessageDialog(null, erro.getMessage());
-    } catch (NumberFormatException erro2) {
-        JOptionPane.showMessageDialog(null, "Informe um número válido.");
-    }
 
     }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
