@@ -2,6 +2,7 @@ package visao;
 
 import static dao.AmigoDAO.ListaAmigo;
 import dao.EmprestimoDAO;
+import static dao.EmprestimoDAO.ListaEmprestimo;
 import static dao.FerramentaDAO.ListaFerramenta;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -134,6 +135,11 @@ public class FrmRealizarEmprestimo extends javax.swing.JFrame {
 
     private void JBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBConfirmarActionPerformed
 
+        //Atualiza a conexao do banco de dados 
+        FrmRelatorioEmprestimo relatorio = new FrmRelatorioEmprestimo();
+        relatorio.setVisible (false);
+        
+        
         String ProcurarNome = JTFNomeAmigo.getText();  //Cria uma variável com o nome excrito na JTF
 boolean encontrado = false;       //Variável para armazenar se o nome foi encontrado
 
@@ -145,18 +151,30 @@ for (int i = 0; i < ListaAmigo.size(); i++) {
 }
 
 String ProcurarIdFerramenta = JTFIdFerramenta.getText();
-boolean encontradaF = false;
+boolean encontrada = false;
 Ferramenta ferramentaEncontrada = null;
 
 for (Ferramenta ferramenta : ListaFerramenta) {
     if (ferramenta.getId() == Integer.parseInt(ProcurarIdFerramenta)) {
-        encontradaF = true;
+        encontrada = true;
         ferramentaEncontrada = ferramenta;
         break;
     }
 }
 
-if (encontradaF && encontrado) {
+String NomeF = "";
+if(encontrada){
+ NomeF = ListaFerramenta.get( Integer.parseInt(ProcurarIdFerramenta)- 1).getNome();
+}
+boolean encontradoL = true;
+for (int i = 0; i < ListaEmprestimo.size(); i++) {
+    if (ListaEmprestimo.get(i).getNomeDaFerramenta().equals(NomeF)) {
+        encontradoL = false;
+        break;      }
+}
+
+
+if (encontrada && encontrado && encontradoL) {
     try {
         String nome = JTFNomeAmigo.getText();
         Date dataSelecionada = JTFDataEmprestimo.getDate();
@@ -183,9 +201,16 @@ if (encontradaF && encontrado) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
     }
-} else {
+} 
+else if (encontrada && encontrado)
+{
+    JOptionPane.showMessageDialog(this, "Ferramenta já está emprestada.");
+}
+else 
+{
     JOptionPane.showMessageDialog(this, "Amigo ou ferramenta não encontrados.");
 }
+
     }//GEN-LAST:event_JBConfirmarActionPerformed
 
     public static void main(String args[]) {

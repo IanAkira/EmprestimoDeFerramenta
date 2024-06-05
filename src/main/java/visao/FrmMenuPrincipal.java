@@ -85,6 +85,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuCadastrar);
 
         jMenuMovimento.setText("Movimento");
+        jMenuMovimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMovimentoActionPerformed(evt);
+            }
+        });
 
         jMenuEmprestimo.setText("Empréstimo");
         jMenuEmprestimo.addActionListener(new java.awt.event.ActionListener() {
@@ -198,6 +203,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void jMenuEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmprestimoActionPerformed
         FrmRealizarEmprestimo menu = new FrmRealizarEmprestimo();
         menu.setVisible (true);
+        FrmGerenciadorAmigo amigo = new FrmGerenciadorAmigo();
+        amigo.setVisible(false);
+        FrmGerenciadorFerramenta ferramenta = new FrmGerenciadorFerramenta();
+        ferramenta.setVisible(false);
     }//GEN-LAST:event_jMenuEmprestimoActionPerformed
 
     private void jMenuRelatórioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRelatórioActionPerformed
@@ -235,6 +244,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
  FrmHistoricoDeEmprestimos menu = new FrmHistoricoDeEmprestimos();
         menu.setVisible (true);
     }//GEN-LAST:event_jMenuHistoricoActionPerformed
+
+    private void jMenuMovimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMovimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuMovimentoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
